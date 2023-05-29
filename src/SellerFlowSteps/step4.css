@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.ads-seller-payments-card-outer-contaier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 32px;
+  gap: 24px;
+
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 80px;
+
+}
+
+.ads-seller-payments-cards-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 32px;
+  gap: 24px;
+
+  width: 95vw;
+  height: 95vh;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ads-payment-card-details-contaier {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 24px 0px;
+  gap: 24px;
+
+  width: 500px;
+  height: 1148px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+  /* Card */
+
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+
+.payment-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 452px;
+  height: 62px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+
+.payment-title {
+  width: 452px;
+  height: 36px;
+
+  /* Title/Heading 3 */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 150%;
+  /* identical to box height, or 36px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.fourth-step-heading {
+  width: 452px;
+  height: 18px;
+
+  /* Footnote/medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  /* identical to box height, or 18px */
+
+
+  /* Primary/Blue 100 */
+
+  color: #0068B3;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.saved-cards-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 413px;
+
+  /* Neutral/Grey/200 */
+
+  border-top: 1px solid #EAECF0;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.payment-card-input-fields-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  isolation: isolate;
+
+  width: 452px;
+  height: 465px;
+
+  /* Neutral/Grey/200 */
+
+  border-top: 1px dashed #EAECF0;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.pay-through-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0px 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 59px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 0;
+}
+
+.paythrough-heading {
+
+  width: 125px;
+  height: 27px;
+
+  /* Title/Sub Heading */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  /* identical to box height, or 27px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.pay-through-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 44px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 1;
+}
+
+.card-num-name-input-fields-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 24px 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 330px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 2;
+}
+
+.name-on-card-input-field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 71px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.details-label {
+  width: 124px;
+  height: 21px;
+
+  /* Body/Body 2 Medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+
+  /* Neutral/Grey/700 */
+
+  color: #344054;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.card-number-input-field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 71px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.card-number--label {
+  width: 90px;
+  height: 21px;
+
+  /* Body/Body 2 Medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+
+  /* Neutral/Grey/700 */
+
+  color: #344054;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.cvv-expiry-container {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+
+  width: 452px;
+  height: 71px;
+  margin-top: 10px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.expiry-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+
+  width: 216px;
+  height: 71px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.cvv-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  width: 216px;
+  height: 71px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
+
+.save-card-check-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  margin-top: 10px;
+  width: 452px;
+  height: 21px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.pay-button-container {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 0px;
+  gap: 8px;
+
+  width: 452px;
+  height: 104px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+  /* Neutral/Grey/300 */
+
+  border-top: 1px dashed #D0D5DD;
+  border-radius: 0px 0px 8px 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.gate-way-icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 138px;
+}
+
+.gate-way-icon {
+  box-sizing: border-box;
+
+  width: 35px;
+  height: 24px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+  /* Neutral/Grey/100 */
+
+  border: 1px solid #F2F4F7;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

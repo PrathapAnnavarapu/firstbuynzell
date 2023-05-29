@@ -1,0 +1,721 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.seller-payments-info-outer-contaier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 32px;
+  gap: 24px;
+  width: 100vw;
+  height: 100vh;  
+  left: 0px;
+  top: 80px;
+}
+
+.seller-payments-info-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 32px;
+  gap: 24px;
+  width: 95vw;
+  height: 98vh; 
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.seller-ads-payment-main-contaier {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 24px 0px;
+  gap: 24px;
+  width: 600px;
+  height: 1479px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+}
+
+.ads-plan-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 452px;
+  height: 62px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ads-plan-heading {
+  width: 452px;
+  height: 36px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;  
+  color: #101828;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.third-step-heading {
+  width: 452px;
+  height: 18px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  color: #0068B3;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-plan-selection-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 552px;
+  height: 264px;
+  border-top: 1px solid #EAECF0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.no-of-days-selection-plan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0px 0px;
+  gap: 4px;
+  width: 552px;
+  height: 59px;
+  background: #FFFFFF;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.no-of-days-ad-selection-slider-container {
+  width: 320px;
+  height: 24px;
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ads-feature-category-plan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 552px;
+  height: 133px;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.featured-category-plan-selection-checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 552px;
+  height: 42px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-packages-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 552px;
+  height: 262px;
+  border-top: 1px solid #EAECF0;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-payment-summury-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 552px;
+  height: 262px;
+  border-top: 1px solid #EAECF0;
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.content-saparate-line {
+  box-sizing: border-box;
+  width: 552px;
+  border: 0px;
+  background: #D9D9D9;
+  border: 1px solid #F2F4F7;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.featured-category-plan-search-result-checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 552px;
+  height: 42px;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-pacakges-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0px 0px;
+  gap: 4px;
+  width: 552px;
+  height: 59px;
+  background: #FFFFFF;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-pacakges-heading {
+  width: 117px;
+  height: 27px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  color: #101828;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ads-pacakages-list-contaier {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 552px;
+  height: 179px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-package-card-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 8px;
+  width: 173.33px;
+  height: 179px;
+  border: 1px solid #EAECF0;
+  border-radius: 4px;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.checkbox-input {
+  width: 157.33px;
+  height: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  margin: 0px;
+  text-align: center;
+  color: #344054;
+}
+
+.plan-price-text {
+  width: 157.33px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+ color: #344054;
+}
+
+.package-features-info-container {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 124px;
+  height: 88px;
+}
+
+.ads-payment-summary-heading-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 552px;
+  height: 62px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ads-payment-summary-heading {
+  width: 552px;
+  height: 36px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
+  margin-top:10px;
+  color: #101828;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-payment-discount-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 552px;
+  height: 119px;
+  border-top: 1px dashed #EAECF0;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+
+}
+
+.ads-payment-discount-heading {
+  width: 77px;
+  height: 27px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  margin-top: 10px;
+  color: #101828;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.ads-price-details-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 552px;
+  height: 280px;
+  border-top: 1px dashed #EAECF0;
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-price-details-sub-heading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0px 0px;
+  gap: 4px;
+  width: 452px;
+  height: 59px;
+  background: #FFFFFF;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ads-price-details-sub-heading {
+  width: 126px;
+  height: 27px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
+  color: #101828;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.days-amount-plan-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.day-ad-amount-title {
+  width: 250px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.day-ad-amount-price {
+  width: 166px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: right;
+  color: #344054;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.silver-amount-plan-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.silver-ad-premium-title{
+  width: 250px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.silver-ad-premium-price {
+  width: 166px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: right;
+  color: #344054;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.feature-category-amount-plan-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 5;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.feature-category-ad-amount-title{
+  width: 250px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.feature-category-ad-amount-price {
+  width: 166px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: right;
+  color: #344054;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.featured-results-amount-plan-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 6;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.featured-results-ad-amount-title{
+  width: 250px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.featured-results-ad-amount-price {
+  width: 166px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: right;
+  color: #344054;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.vat-amount-plan-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 6;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.vat-amount-title{
+  width: 250px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #344054;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.discount-amount-plan-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  width: 552px;
+  height: 24px;
+  flex: none;
+  order: 7;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.vat-amount-price {
+  width: 166px;
+  height: 21px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: right;
+  color: #344054;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+
+.total-amount-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 0px;
+  gap: 8px;
+  width: 552px;
+  height: 122px;
+  background: #FFFFFF;
+  border-top: 1px dashed #D0D5DD;
+  border-radius: 0px 0px 8px 8px;
+  flex: none;
+  order: 4;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
+
+.total-amount-inner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px 16px;
+  width: 552px;
+  height: 40px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.day-ad-total-amount-text {
+  width: 39px;
+  height: 24px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #101828;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.day-ad-total-amount-price {
+  width: 166px;
+  height: 24px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: right;
+  color: #101828;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.ad-preview-container{
+  box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 16px;
+gap: 16px;
+width: 452px;
+height: 104px;
+background: #FFFFFF;
+border: 1px solid #EAECF0;
+border-radius: 8px;
+margin: 0px;
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}

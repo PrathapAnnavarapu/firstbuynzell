@@ -1,0 +1,101 @@
+.App {
+    font-family: sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+  }
+  
+  .carousel-container {
+    box-sizing: border-box;
+  
+    /* Auto layout */
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+  
+    width: 100%;
+    height: 480px;
+  
+    /* Neutral/Grey/200 */
+  
+    border: 1px solid #EAECF0;
+    border-radius: 4px;
+  }
+  
+  .selected-image {
+    box-sizing: border-box;
+  
+    /* Auto layout */
+    /* display: flex;
+    flex-direction: column;
+    align-items: flex-start; */
+    padding: 0px;
+    gap: 16px;
+    
+  
+    width: 100%;
+    height: 480px;
+  
+    /* Neutral/Grey/200 */
+  
+    border: 1px solid #EAECF0;
+    border-radius: 4px;
+  
+    /* Inside auto layout */
+  
+     margin-bottom: 8px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .carousel {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 100%;
+    height: 120px;
+  
+  }
+  
+  .carousel__images {
+    display: flex;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .carousel__image-selected {
+    border: 3px solid #0068B3 !important;
+  }
+  
+  .carousel__image {
+    margin-right: 10px;
+    height: 120px;
+    min-width: 120px;
+    border: 3px solid #ffa70000;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .carousel__button {
+    position: absolute;
+    bottom: 370px;
+  }
+  
+  .carousel__button-left {
+    left: 10px;
+  }
+  
+  .carousel__button-right {
+    right: 10px;
+  }
+  
+  
+  

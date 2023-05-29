@@ -1,0 +1,753 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.body {
+  overflow-x: hidden;
+}
+
+.main-seller-contaier {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  left: 35vw;
+  padding: 0px;
+  gap: 16px;
+  width: 500px;
+  height: 1366px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px
+}
+
+.seller-flow-bread-crumbs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 500px;
+  height: 24px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+
+.seller-product-information-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 24px 0px;
+  gap: 24px;
+
+  width: 500px;
+  height: 1326px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+  /* Card */
+
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+}
+
+.ad-details-text-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 452px;
+  height: 62px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.text-heading {
+  width: 452px;
+  height: 36px;
+
+  /* Title/Heading 3 */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 150%;
+  /* identical to box height, or 36px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.step-heading {
+  width: 452px;
+  height: 18px;
+
+  /* Footnote/medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  /* identical to box height, or 18px */
+
+
+  /* Primary/Blue 100 */
+
+  color: #0068B3;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.ad-edetails--of-car-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 666px;
+
+  /* Neutral/Grey/200 */
+
+  border-top: 1px solid #EAECF0;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.car-ad-info-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 0px 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 51px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.car-ad-info-heading {
+  width: 68px;
+  height: 27px;
+
+  /* Title/Sub Heading */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  /* identical to box height, or 27px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.car-ad-info-input-fields-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+
+  width: 452px;
+  height: 599px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.car-ads-photos-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 202px;
+
+  /* Neutral/Grey/200 */
+
+  border-top: 1px dashed #EAECF0;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.car-ads-price-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 452px;
+  height: 119px;
+
+  /* Neutral/Grey/200 */
+
+  border-top: 1px dashed #EAECF0;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 3;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.procedings-container {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 0px;
+  gap: 8px;
+
+  width: 452px;
+  height: 149px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+  /* Neutral/Grey/300 */
+
+  border-top: 1px dashed #D0D5DD;
+  border-radius: 0px 0px 8px 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 4;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.car-ad-info--input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+
+  width: 452px;
+  height: 44px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.fuel-type-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 59px;
+
+}
+
+.fuel-type-label {
+  width: 65px;
+  height: 21px;
+
+  /* Body/Body 2 Medium */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  margin-bottom: 10px;
+
+  /* identical to box height, or 21px */
+
+
+  /* Neutral/Grey/700 */
+
+  color: #344054;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.fuel-type-filter-info-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 347px;
+  height: 30px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.activeFuelinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 4px;
+  gap: 2px;
+  height: 30px;
+  background: #0068B3;
+  mix-blend-mode: multiply;
+  height: 18px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  padding: 12px;
+  padding-left: 13px;
+  padding-top: 5px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: #FFFFFF;
+  height: 30px;
+  background: #0068B3;
+  mix-blend-mode: multiply;
+  color: white;
+  border: 1px solid #0068B3;
+  border-radius: 90px;
+
+
+}
+
+.deactiveFuelInfo {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 18px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  height: 30px;
+  background-color: transparent;
+  color: #475467;
+  mix-blend-mode: multiply;
+  border: 1px solid #D0D5DD;
+  border-radius: 100px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  padding: 12px;
+  padding-left: 13px;
+  padding-top: 5px;
+
+}
+
+.additions-info-button{
+  width: 141px;
+height: 24px;
+
+/* Body/Body 1 Medium */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 150%;
+/* identical to box height, or 24px */
+
+
+/* Primary/Blue 100 */
+
+color: #0068B3;
+border-style: none;
+background-color: transparent;
+
+/* Inside auto layout */
+
+flex: none;
+
+flex-grow: 0;
+}
+.cars-ad-photos-info-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0px 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 59px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.cars-ad-photos-info-heading {
+  width: 101px;
+  height: 27px;
+
+  /* Title/Sub Heading */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  /* identical to box height, or 27px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.upload-car-ads-images-container {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  padding: 16px 24px;
+  gap: 4px;
+
+
+
+  width: 452px;
+  height: 127px;
+
+  /* White */
+
+  background: #FFFFFF;
+  /* Neutral/Grey/200 */
+
+  border: 1px dashed #EAECF0;
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.upload-car-ads-images-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  width: 404px;
+  height: 95px;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.upload-images-icon {
+  width: 40px;
+  height: 40px;
+
+  /* Neutral/Grey/100 */
+
+  background: #F2F4F7;
+  /* Gray/50 */
+
+  border: 6px solid #F9FAFB;
+  border-radius: 28px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.upload-icon {
+  width: 20px;
+  height: 20px;
+  left: 10px;
+  top: 10px;
+  color: #0068B3;
+
+}
+
+.cars-ads-price-info-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0px 0px;
+  gap: 4px;
+
+  width: 452px;
+  height: 59px;
+
+  /* Neutral/Grey/0 */
+
+  background: #FFFFFF;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.cars-ads-price-info-heading {
+  width: 44px;
+  height: 27px;
+
+  /* Title/Sub Heading */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  /* identical to box height, or 27px */
+
+
+  /* Neutral/Grey/900 */
+
+  color: #101828;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.cars-ads-price-info-input-field-container {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 452px;
+  height: 44px;
+
+  /* White */
+
+  background: #FFFFFF;
+  /* Neutral/Grey/300 */
+
+  border: 1px solid #D0D5DD;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.type-of-rupee {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 12px 10px 14px;
+
+  width: 58px;
+  height: 44px;
+
+  /* Neutral/Grey/300 */
+
+  border-right: 1px solid #D0D5DD;
+  border-radius: 8px 0px 0px 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.privacy-statement {
+  width: 452px;
+  height: 21px;
+
+  /* Body/Body 2 */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+
+  /* Neutral/Grey/700 */
+
+  color: #344054;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.special-text {
+  width: 452px;
+  height: 21px;
+
+  /* Body/Body 2 */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  /* identical to box height, or 21px */
+
+
+  /* Neutral/Grey/700 */
+
+  color: #0068B3;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
