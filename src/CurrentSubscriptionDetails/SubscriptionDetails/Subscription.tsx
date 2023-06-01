@@ -15,6 +15,7 @@ import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import HeadSection from '../../HeadSection/Header'
+import './newSubscription.css'
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -94,11 +95,13 @@ const footers = [
 
 function PricingContent() {
   return (
-    <React.Fragment>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+  
+    <React.Fragment >
+      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }}/>
       <CssBaseline />      
-      <HeadSection/>      
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+      <HeadSection/>    
+      <div className='upgrade-package-container'>  
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }} >
         <Typography
           component="h1"
           variant="h2"
@@ -214,8 +217,10 @@ function PricingContent() {
         </Grid>
         <Copyright sx={{ mt: 5 }} />
       </Container>
+      </div>
       {/* End footer */}
     </React.Fragment>
+   
   );
 }
 

@@ -6,12 +6,14 @@
     flex-direction: column;
     align-items: center;
     padding: 24px 80px 80px;
+    padding-bottom: 150px;
     gap: 24px;
     position: absolute;
-    width: 1440px;
-    height: 867px;
+    width: 100vw;
+    height: 100vh;
     left: 0px;
     top: 136px;
+    overflow-y: scroll;
 
 }
 
@@ -23,7 +25,7 @@
     padding: 32px 24px;
     gap: 24px;
 
-    width: 1280px;
+    width: 100%;
     height: 160px;
 
     /* Neutral/Grey/0 */
@@ -42,6 +44,21 @@
     flex-grow: 0;
 }
 
+.no-fav-heading-text-center-align{   
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+    align-items: center;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
+    margin: 0px;
+    color: #101828;
+        
+}
 
 
 .fa-container {
@@ -51,7 +68,7 @@
     padding: 0px;
     gap: 16px;
 
-    width: 1280px;
+    width: 100%;
     height: 579px;
 
 
@@ -68,7 +85,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    width: 1280px;
+    width: 100%;
     height: 21px;
     flex: none;
     order: 0;
@@ -82,7 +99,7 @@
     align-items: flex-start;
     padding: 32px 24px;
     gap: 24px;
-    width: 1280px;
+    width: 100%;
     height: 542px;
     background: #FFFFFF;
 
@@ -102,7 +119,7 @@
     align-items: flex-start;
     padding: 0px 0px 24px;
     gap: 24px;
-    width: 1232px;
+    width: 100%;
     height: 114px;
     border-bottom: 1px solid #EAECF0;
     flex: none;
@@ -116,7 +133,7 @@
     align-items: center;
     padding: 0px;
     gap: 8px;
-    width: 1232px;
+    width: 100%;
     height: 30px;
     flex: none;
     order: 1;
@@ -130,7 +147,7 @@
     align-items: center;
     padding: 0px;
     gap: 16px;
-    width: 1232px;
+    width: 100%;
     height: 340px;
     /* Inside auto layout */
 
@@ -140,7 +157,7 @@
 }
 
 .favourites-heading {
-    width: 1232px;
+    width: 100%;
     height: 36px;
 
     /* Title/Heading 3 */
@@ -171,12 +188,8 @@
     align-items: flex-start;
     padding: 0px;
     gap: 12px;
-
     width: 296px;
-    height: 154px;
-
-
-    /* Inside auto layout */
+    height: 154px;   
 
     flex: none;
     order: 1;

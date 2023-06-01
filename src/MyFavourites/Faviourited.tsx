@@ -64,7 +64,7 @@ function Faviourites(props) {
                         </div>
                         <div className="fav-cars-list-container">
                             {activeFavId === 1 ?
-                                (faviorites.length === 0 ? <h1 style={{ margin: 0, display: "flex", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 1180, height: 520 }}>No Favourite Items</h1> :
+                                (faviorites.length === 0 ? <h1 className="no-fav-heading-text-center-align">No Favourite Items</h1> :
                                     //   <ul className="fav-list">
                                     (faviorites.map((eachData) => (
                                         <div className='fav-card'>

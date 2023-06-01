@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-.main-profile-container {
+#main-profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0px 0px 80px;
     gap: 32px;
     position: absolute;
-    width: 1440px;
-    height: 2052px;
+    width: 100vw;
+    height: 100%;
     left: 0px;
     top: 136px;
     overflow-y: scroll;
+    padding-bottom: 180px;
 
 }
 
@@ -20,8 +21,12 @@
     flex-direction: column;
     align-items: center;
     padding: 0px 0px 16px;
-    width: 1440px;
+    width: 100%;
     height: 240px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
     background: linear-gradient(to left, rgba(216, 85, 107, 0.2), rgba(145, 101, 216, 0.2));
 }
 
@@ -65,24 +70,12 @@
 .label-button-heading {
     width: 82px;
     height: 24px;
-
-    /* Body 1 Semi */
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
-    /* identical to box height, or 24px */
-
-
-    /* Neutral/Grey/25 */
-
     color: #FCFCFD;
-
-
-    /* Inside auto layout */
-
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -97,15 +90,12 @@
     align-items: flex-start;
     padding: 0px 80px;
     gap: 19px;
-    width: 1440px;
-    max-height: 1900px;
+    width: 100%;
+    height: 2227;
     flex: none;
     order: 1;
     flex-grow: 0;
 }
-
-
-
 
 .profile-shor-info {
     display: flex;
@@ -225,7 +215,7 @@
     position: absolute;
     width: 32px;
     height: 32px;
-    left: 398.5px;
+    left: 358.5px;
     top: 365px;
 }
 

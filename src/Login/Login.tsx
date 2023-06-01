@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from 'react'
-
+import {useNavigate} from 'react-router-dom'
 
 import './index.css';
 
@@ -37,7 +37,8 @@ const Copyright = (props: any) => {
 const theme = createTheme();
 
  const  SignIn = (props:any) =>{
-    //let history = useHistory()
+
+  const navigate = useNavigate()
 
 
   const [credentials, setCredentials] = useState({
@@ -73,11 +74,18 @@ const theme = createTheme();
       username: credentials.email,
       password: credentials.password,
     }
-    const url = 'http://localhost:5000/login'
+    const url = 'https://buynzell.colourful.works/wp-json/rtcl/v1/login'
     const options = {
       method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
+      headers: {        
+        'Content-type': 'application/json',         
+        "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+        "Access-Control-Allow-Origin": 'https://localhost:3000',
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept,'Accept-Language','Content-Language','text/plain','application/x-www-form-urlencoded','multipart/form-data'",
+        'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        'Content-Type': 'multipart/form-data',
+        
       },
       body: JSON.stringify(loginDetails),
     }
@@ -86,6 +94,7 @@ const theme = createTheme();
     .then((data)=>{
       if (data.status === 200){
         //onSubmitSuccess(data)
+        navigate('/')
       }else{
         //onSubmitFailure(data.message)
       }

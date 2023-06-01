@@ -1,4 +1,4 @@
-import React, { useState, useRef, Component } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import HeadeSection from '../HeadSection/Header'
 import ProductCard from '../LandingSection/ProductCard'
@@ -4196,24 +4196,26 @@ const PropertyListItemDetails ={
       };
 
 
-    // useEffect(()=>{
-    //     const ListsUrl = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
-    //     const options = { 
-    //         method: 'GET',          
-    //         headers: {
-    //           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',           
-    //           'Content-type': 'application/json',
-    //           //Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODA1MDE1OTcsImV4cCI6MTY4MDU4Nzk5N30.ECp-yIUGci1ii_XGwNotRih88wl5sWv7gT8ebARXX50',
-    //           'x-api-key' :'82aea282-ba7a-42d4-8aae-e387ea74e38b'
-    //         }, 
-    //       }
-    //     fetch(ListsUrl,options)
-    //     .then((res => res.json()))
-    //     .then((data) =>{
-    //         console.log(data)
-    //         setCarsList(data)
-    //     })
-    // })
+     useEffect(()=>{
+        const ListsUrl = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
+         const options = {             
+             method: 'GET', 
+             headers: {                
+                "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
+                'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                'Content-Type': 'multipart/form-data'
+              }, 
+           }
+         fetch(ListsUrl,options)
+         .then((res => res.json()))
+         .then((data) =>{
+             console.log(data)
+             setCarsList(data)
+       })
+     })
 
    
 

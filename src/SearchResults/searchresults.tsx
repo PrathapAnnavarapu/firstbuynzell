@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react';
 import {useParams} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';

@@ -8,10 +8,12 @@
     padding: 80px 32px;
     gap: 24px;
     position: absolute;
-    width: 1440px;
-    height: 1789px;
+    width: 100vw;
+    height: 100vh;
     left: 0px;
     top: 136px;
+    overflow-y: scroll;
+    padding-bottom: 150px;
 
 }
 

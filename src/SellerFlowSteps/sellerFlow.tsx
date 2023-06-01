@@ -88,7 +88,7 @@ export default function SellerFlowSteps() {
                 {activeStep === 0 && (
                     <>
                         <StepOne />
-                        <Stack direction={'row'} justifyContent={'center'} sx={{ pl: 5, m: 1, position: 'absolute', top: 1380, left:500 }}>
+                        <Stack direction={'row'} justifyContent={'center'} sx={{ pl: 5, m: 1, position: 'absolute', top: 2000, left:470 }}>
                             {activeStep === steps.length ? (
                                 <React.Fragment>
                                     <Typography sx={{ mt: 2, mb: 1 }}>

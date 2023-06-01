@@ -9,9 +9,11 @@
 
     position: absolute;
     width: 100vw;
-    height: 864px;
+    height: 100%;
     left: 0px;
     top: 136px;
+    overflow-y: scroll;
+    padding-bottom: 170px;
 
 }
 

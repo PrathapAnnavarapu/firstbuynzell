@@ -26,9 +26,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete'
 import { differenceInDays } from 'date-fns'
 
+import { useNavigate } from 'react-router-dom';
+
 import './signUp.css'
 
-interface userdata { firstname: string, lastname: string, email: string, gender: string, password: string, confirmPassword: string }
+interface userdata { firstname: string,  email: string,  password: string }
 
 
 
@@ -50,15 +52,15 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 const Signup = (props: any) => {
-  console.log(props.data)
+
+  const navigate= useNavigate()
+ 
 
   const [userData, setUserData] = useState<userdata>({
-    firstname: '',
-    lastname: '',
-    email: '',
-    gender: '',
+    firstname: '',    
+    email: '',    
     password: '',
-    confirmPassword: '',
+    
   })
   const [Errors, setErrors] = useState<any>({})
   const [isSubmit, setIsSubmit] = useState<boolean>(false)
@@ -88,11 +90,17 @@ const Signup = (props: any) => {
 
   useEffect(() => {
     if (Object.keys(Errors).length === 0 && isSubmit === true) {
-      const url = 'http://localhost:4000/register'
+      const url = 'https://buynzell.colourful.works/wp-json/rtcl/v1/signup'
       const options = {
         method: 'POST',
         headers: {
-          'Content-type': 'application/json'
+          'Content-type': 'application/json',
+          "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
+          'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          'Content-Type': 'multipart/form-data'
         },
         body: JSON.stringify(userData)
       }
@@ -101,6 +109,7 @@ const Signup = (props: any) => {
         .then((data) => {
           if (data.status === 200) {
             console.log(data.message)
+            navigate('/Login')
             //onSubmitRegistration()
           } else if (data.status === 400) {
             console.log(data.message)
@@ -135,9 +144,9 @@ const Signup = (props: any) => {
     if (!values.firstname) {
       errors.firstname = 'FirstName is Required!'
     }
-    if (!values.lastname) {
-      errors.lastname = 'LastName is Required!'
-    }
+    // if (!values.lastname) {
+    //   errors.lastname = 'LastName is Required!'
+    // }
     // if (!values.address) {
     //   errors.address = 'Address is Required!'
     // }
@@ -178,11 +187,11 @@ const Signup = (props: any) => {
     } else if (!re.specialCharacter.test(values.password)) {
       errors.password = 'Password Should have one Special Character!'
     }
-    if (!values.confirmPassword) {
-      errors.confirmPassword = 'confirmPassword is Required!'
-    } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = 'confirmPassword must same as password'
-    }
+    // if (!values.confirmPassword) {
+    //   errors.confirmPassword = 'confirmPassword is Required!'
+    // } else if (values.confirmPassword !== values.password) {
+    //   errors.confirmPassword = 'confirmPassword must same as password'
+    // }
     return errors
   }
 
@@ -191,7 +200,7 @@ const Signup = (props: any) => {
     event.preventDefault();
     setErrors(validateForm(userData))
     setIsSubmit(true)
-
+    
 
   };
 
@@ -222,7 +231,7 @@ const Signup = (props: any) => {
           <Typography component="h1" variant="h6">
             to sell and buy
           </Typography>
-          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <form  id="onForm" onSubmit={handleSubmit} style={{ marginTop: 20 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -231,14 +240,14 @@ const Signup = (props: any) => {
                   required
                   fullWidth
                   id="firstname"
-                  label="First Name"
+                  placeholder="First Name"
                   autoFocus
                   onChange={onChangeHandeler}
                   value={userData.firstname}
                 />
                 <p className="error-msg">{Errors.firstname}</p>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -250,13 +259,13 @@ const Signup = (props: any) => {
                   value={userData.lastname}
                 />
                 <p className="error-msg">{Errors.lastName}</p>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  placeholder="Email Address"
                   name="email"
                   autoComplete="email"
                   onChange={onChangeHandeler}
@@ -264,7 +273,7 @@ const Signup = (props: any) => {
                 />
               </Grid>
               <p className="error-msg">{Errors.email}</p>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControl >
                   <FormLabel id="demo-row-radio-buttons-group-label">Gender *</FormLabel>
                   <RadioGroup
@@ -277,13 +286,13 @@ const Signup = (props: any) => {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <p className="error-msg">{Errors.gender}</p>
+              <p className="error-msg">{Errors.gender}</p> */}
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  placeholder="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -292,7 +301,7 @@ const Signup = (props: any) => {
                 />
               </Grid>
               <p className="error-msg">{Errors.password}</p>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -305,7 +314,7 @@ const Signup = (props: any) => {
                   value={userData.confirmPassword}
                 />
               </Grid>
-              <p className="error-msg">{Errors.confirmPassword}</p>
+              <p className="error-msg">{Errors.confirmPassword}</p> */}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -329,7 +338,7 @@ const Signup = (props: any) => {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          </form>
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

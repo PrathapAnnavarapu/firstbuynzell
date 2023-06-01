@@ -23,7 +23,7 @@ const MyProfile = () => {
     return (
         <>
             <HeadSection />
-            <div className='main-profile-container'>
+            <div id='main-profile-container'>
                 <div className='banner-image-container'>
                     <div className='banner-image-logo'>
                         <h2 className='replace-banner-heading'>Replce banner image</h2>

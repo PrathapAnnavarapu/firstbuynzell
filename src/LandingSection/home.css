@@ -9,16 +9,16 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 34px ;
-    padding-bottom: 180px;
+    padding: 34px ;   
     /* gap: 32px; */
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     left: 0px;
     top: 136px;
     box-sizing: border-box;
     overflow-y: scroll;
+    padding-bottom: 150px;
 }
 .carousel-main-container{    
     width: 100%;

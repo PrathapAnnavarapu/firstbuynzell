@@ -27,13 +27,13 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
     if (images && images.length > 0) {     
       setSelectedImage(images[newIdx]);
       setSelectedImageIndex(newIdx);
-      window.scrollTo(0, 300)
+      window.scrollTo(0, 0)
       if (carouselItemsRef?.current[newIdx]) {
         carouselItemsRef?.current[newIdx]?.scrollIntoView({
           inline: "start",
           behavior: "smooth"
         });
-        window.scrollTo(0, 300)
+        window.scrollTo(0, 0)
       }
     }
   };
