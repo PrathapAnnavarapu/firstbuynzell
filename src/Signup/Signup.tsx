@@ -52,7 +52,7 @@ const theme = createTheme();
 
 const Signup = (props: any) => {
 
-  const navigate= useNavigate()
+  // const navigate= useNavigate()
  
 
   const [userData, setUserData] = useState<userdata>({

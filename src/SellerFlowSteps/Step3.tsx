@@ -214,7 +214,7 @@ function StepThree() {
                   <p style={{ margin: 0 }}>For 2.5 Days</p>
                 </Stack>
               </div>
-              {/* <hr className='content-saparate-line'/> */}
+              <hr className='content-saparate-line'/>
               <div className='featured-category-plan-search-result-checkbox-container'>
                 <Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 550, m: 0 }}>
                   <FormControlLabel required control={<Checkbox />} label='Feature In Search Result' onChange={changeHandleFeatureSearchResult} />

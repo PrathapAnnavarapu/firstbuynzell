@@ -4198,58 +4198,70 @@ const PropertyListItemDetails ={
         fontSize: "20px",
         fontWeight: "bold"
       };
+   
+    const fetchDataFromServer = () =>{
+        const ListsUrl:any = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
+         const options:any = {             
+             method: 'GET', 
+             mode: "no-cors",
+             credentials: 'include',
+             headers: {                
+                "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
+                // "Access-Control-Allow-Headers": "*",
+                'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                'Content-Type': 'application/form-data',
+                "cache-control" : "no-cache"
+              }, 
+              
+           }
+         fetch(ListsUrl,options)
+         .then((res)=> res.json())
+         .then ((data)=>{
+            setCarsList(data)
+            console.log(data) 
+
+         })    
+         
+    }
+
+     useEffect(()=>{
+        fetchDataFromServer()        
+     },[])
 
 
-    //  useEffect(()=>{
-    //     const ListsUrl = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
-    //      const options = {             
-    //          method: 'GET', 
-    //          headers: {                
-    //             "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-    //             "Access-Control-Allow-Origin": "*",
-    //             "Access-Control-Allow-Credentials": "true",
-    //             "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
-    //             'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-    //             'Content-Type': 'multipart/form-data'
-    //           }, 
-    //        }
-    //      fetch(ListsUrl,options)
-    //      .then((res => res.json()))
-    //      .then((data) =>{
-    //          console.log(data)
-    //          setCarsList(data)
-    //    })
-    //  })
 
-
-
-     useEffect(() => {
-        const fetchProducts = async () => {
-          try {
-            const response = await axios.get(
-              "https://buynzell.colourful.works/wp-json/rtcl/v1/listings",
-              {
-                headers: {
-                  "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-    
-                //   "Access-Control-Allow-Origin": "*",
-                //   "Access-Control-Allow-Headers":
-                //     "Origin, X-Requested-With, Content-Type, Accept",
-                },
-              }
-            );
+    //  useEffect(() => {
+    //     const fetchProducts = async () => {
+    //       try {
+    //         const response:any = await axios.get(
+    //           "https://backend.colourful.work/wp-json/rtcl/v1/listings",
+    //           {
+    //             headers: {
+    //               "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+    //               "Content-Type": "application/json",
+    //               "Access-Control-Allow-Origin": "*",
+    //               "Access-Control-Allow-Headers":
+    //                 "Origin, X-Requested-With, Content-Type, Accept",
+    //                 "cache-control" : "no-cache"
+    //             },
+                
+    //           }
+    //         );
     
           
     
-            setCarsList(response.data);
-            console.log(carsList)
-          } catch (error) {
-            console.error(error);
-          }
-        };
+    //         setCarsList(response.data);
+    //         console.log(carsList)
+    //       } catch (error) {
+    //         console.error(error);
+    //       }
+    //     };
     
-        fetchProducts();
-      }, []);
+    //     fetchProducts();
+    //   }, []);
 
    
 
