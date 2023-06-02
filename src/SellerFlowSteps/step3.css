@@ -636,6 +636,10 @@
   flex-grow: 0;
 }
 
+.content-saparate-line{
+  margin: 0px;
+}
+
 
 .total-amount-container {
   box-sizing: border-box;
