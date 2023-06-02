@@ -25,7 +25,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Autocomplete from '@mui/material/Autocomplete'
 import { differenceInDays } from 'date-fns'
-
 import { useNavigate } from 'react-router-dom';
 
 import './signUp.css'
@@ -88,41 +87,43 @@ const Signup = (props: any) => {
  }*/
 
 
-  useEffect(() => {
-    if (Object.keys(Errors).length === 0 && isSubmit === true) {
-      const url = 'https://buynzell.colourful.works/wp-json/rtcl/v1/signup'
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
-          'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-          'Content-Type': 'multipart/form-data'
-        },
-        body: JSON.stringify(userData)
-      }
-      fetch(url, options)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === 200) {
-            console.log(data.message)
-            navigate('/Login')
-            //onSubmitRegistration()
-          } else if (data.status === 400) {
-            console.log(data.message)
-            //onSubmitUserAlreadyExist()
-          }
+  // useEffect(() => {
+  //   if (Object.keys(Errors).length === 0 && isSubmit === true) {
+  //     const url = 'https://buynzell.colourful.works/wp-json/rtcl/v1/signup'
+  //     const options = {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //         "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+  //         "Access-Control-Allow-Origin": "*",
+  //         "Access-Control-Allow-Credentials": "true",
+  //         "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
+  //         'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+  //         'Content-Type': 'multipart/form-data'
+  //       },
+  //       body: JSON.stringify(userData)
+  //     }
+  //     fetch(url, options)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.status === 200) {
+  //           console.log(data.message)
+  //           navigate('/Login')
+  //           //onSubmitRegistration()
+  //         } else if (data.status === 400) {
+  //           console.log(data.message)
+  //           //onSubmitUserAlreadyExist()
+  //         }
 
-        })
-        .catch((error) => {
-          console.log(error)
-          //onSubmitFailure()
-        })
-    }
-  }, [Errors])
+  //       })
+  //       .catch((error) => {
+  //         console.log(error)
+  //         //onSubmitFailure()
+  //       })
+  //   }
+  // }, [Errors])
+
+ 
 
 
   const validateForm = values => {

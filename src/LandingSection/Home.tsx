@@ -9,6 +9,9 @@ import { BsArrowRight } from "react-icons/bs";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
 import { Carousel } from "react-carousel-minimal";
 // import Carousel from 'react-bootstrap/Carousel';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css"
 import './home.css'
@@ -20,6 +23,7 @@ const carfilterButtons = [{ name: 'Luxury', id: 1 }, { name: 'Hatchback', id: 2 
 const propertyfilterButtons = [{ name: '2 BHK', id: 1 }, { name: '3 BHK', id: 2 }, { name: 'Pent House', id: 3 }, { name: 'Villa/House', id: 4 }, { name: 'Townhouse', id: 5 }]
 const electronicsfilterButtons = [{ name: 'iPhone', id: 1 }, { name: 'Samsung', id: 2 }, { name: 'Huawei', id: 3 }, { name: 'Vivo', id: 4 }]
 const LandingSection = (props) => {
+    const navigate = useNavigate()
     const CarsListObject = {
         "data": [
             {
@@ -4196,26 +4200,56 @@ const PropertyListItemDetails ={
       };
 
 
-     useEffect(()=>{
-        const ListsUrl = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
-         const options = {             
-             method: 'GET', 
-             headers: {                
-                "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
-                'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                'Content-Type': 'multipart/form-data'
-              }, 
-           }
-         fetch(ListsUrl,options)
-         .then((res => res.json()))
-         .then((data) =>{
-             console.log(data)
-             setCarsList(data)
-       })
-     })
+    //  useEffect(()=>{
+    //     const ListsUrl = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
+    //      const options = {             
+    //          method: 'GET', 
+    //          headers: {                
+    //             "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+    //             "Access-Control-Allow-Origin": "*",
+    //             "Access-Control-Allow-Credentials": "true",
+    //             "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
+    //             'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+    //             'Content-Type': 'multipart/form-data'
+    //           }, 
+    //        }
+    //      fetch(ListsUrl,options)
+    //      .then((res => res.json()))
+    //      .then((data) =>{
+    //          console.log(data)
+    //          setCarsList(data)
+    //    })
+    //  })
+
+
+
+     useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+            const response = await axios.get(
+              "https://buynzell.colourful.works/wp-json/rtcl/v1/listings",
+              {
+                headers: {
+                  "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+    
+                //   "Access-Control-Allow-Origin": "*",
+                //   "Access-Control-Allow-Headers":
+                //     "Origin, X-Requested-With, Content-Type, Accept",
+                },
+              }
+            );
+    
+          
+    
+            setCarsList(response.data);
+            console.log(carsList)
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchProducts();
+      }, []);
 
    
 
