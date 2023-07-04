@@ -135,6 +135,13 @@
     align-self: stretch;
     flex-grow: 0;
     margin: 0px;
+    color: var(--neutral-grey-900, #101828);
+/* Title/Sub Heading */
+    font-size: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
 }
 
 .my-ads-section-container {

@@ -1021,18 +1021,7 @@ flex-shrink: 0;
   flex-grow: 0;
 }
 
-.user-photo-avatar-container {
-  width: 32px;
-  height: 32px;
 
-  border-radius: 32px;
-  background-color: #344054;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
 
 .profile-user-name {
   width: 67px;

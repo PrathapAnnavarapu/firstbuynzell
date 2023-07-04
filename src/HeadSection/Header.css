@@ -867,6 +867,15 @@ input {
   color: #0068B3;
 }
 
+.join-corporate-style{
+  color: #000000;
+  text-decoration: none;
+  border-style: none;
+  font-family: "Inter";
+  font-weight: 600; 
+
+}
+
 .signip-first-container{
   display: flex;
 flex-direction: column;

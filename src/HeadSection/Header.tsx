@@ -932,8 +932,7 @@ const ResponsiveAppBar = (props: any) => {
               <MenuItem onClick={handleMotorsMenuClose}>Used auto spare parts</MenuItem>
               <MenuItem onClick={handleMotorsMenuClose}>Others</MenuItem>
             </Menu>   
-            <button   id="basic-button" type='button' className='nav-butons-style'  onClick={()=>naviagete('/Join-Corporate')}>Join Corporate</button>
-         
+            <a  target='_blank'  id="basic-button" className='join-corporate-style' href='/Join-Corporate'>Join Corporate</a>
           </div>
         </div>
       </form>

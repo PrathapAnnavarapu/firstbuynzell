@@ -1,0 +1,45 @@
+.join-corporate-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    height: 73px;
+    border-bottom: 1px solid var(--gray-200, #EAECF0);
+    background: var(--base-white, #FFF);
+}
+
+.join-corporate-header-inner-container {
+    display: flex;
+    width: 90%;
+    height: 72px;
+    padding: 0px 32px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.corporate-Header-heading{   
+color: var(--neutral-grey-800, #1D2939);
+text-align: center;
+
+/* Title/Sub Heading */
+font-size: 18px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+line-height: 150%;
+}
+
+.corporate-cancel-button {
+    background-color: transparent;
+    border-style: none;
+    color: var(--primary-blue-100, #0068B3);
+    /* Body/Body 1 Medium */
+    font-size: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+}

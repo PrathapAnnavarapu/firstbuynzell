@@ -3793,10 +3793,8 @@ const ListItemDetails = (props) => {
                                     <p className="top-section-posted-sub-text" > Posted {monthsOld}</p>
                                 </div>
                                 <div className="top-section-ads-posted-user-info-container">
-                                    <div className="top-section-ads-posted-user-info-inner-container" onClick={()=>navigate(`/Seller-Details/${each.customer_id}`)}>
-                                        <div className="user-photo-avatar-container">
-                                            <img className="avatar" src={`http://localhost:4000/${each.profile_image_url}`} alt="pic" />
-                                        </div>
+                                    <div className="top-section-ads-posted-user-info-inner-container" onClick={()=>navigate(`/Seller-Details/${each.customer_id}`)}>                                        
+                                        <img className="avatar" src={`http://localhost:4000/${each.profile_image_url}`} alt="pic" />
                                         <p className="profile-user-name">{each.name}</p>
                                     </div>
                                 </div>
@@ -3811,7 +3809,7 @@ const ListItemDetails = (props) => {
                                 <div className="motors-adress-location-on-map">
                                     <div id="embedded-map-display" >
                                         <iframe                                           
-                                            src={`https://www.google.com/maps/embed/v1/place?q=${each.lati}, ${each.long}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`}  className='map-sizes'>
+                                            src={`https://www.google.com/maps/embed/v1/place?q=${each.latitude}N, ${each.longitude}E&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`}  className='map-sizes'>
 
                                         </iframe>
                                     </div>

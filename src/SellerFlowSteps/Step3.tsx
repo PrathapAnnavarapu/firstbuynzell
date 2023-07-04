@@ -232,21 +232,22 @@ function StepThree() {
               <Stack direction={'row'}>
                 <Grid item>
                   <Input
+                  sx={{color:'#0068B3', width:42}}
                     value={planDetails.planValidityDays}
                     size="small"
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     inputProps={{
                       step: 10,
-                      min: 1,
+                      min: 0,
                       max: 100,
                       type: 'number',
-                      'aria-labelledby': 'input-slider',
+                      // 'aria-labelledby': 'input-slider',
                     }}
                   />
                 </Grid>
-                <Typography id="input-slider" gutterBottom>
-                  {planDetails.planValidityDays === 1 ? 'Day' : 'Days'}(<span style={{ color: 'blue', fontWeight: 500 }}>{planDetails.planValidityDays * 50}</span> AED)
+                <Typography id="input-slider" gutterBottom sx={{color:'#0068B3'}}>
+                  {planDetails.planValidityDays === 1 ? 'Day' : 'Days'} (<span style={{ color: 'black', fontWeight: 500 }}>AED {planDetails.planValidityDays * 50}</span>)
                 </Typography>
               </Stack>
             </div>

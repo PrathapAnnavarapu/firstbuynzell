@@ -1,27 +1,31 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
+import Logo from '../../assets/Logo.svg'
 
-import Logo from '../assets/Logo.svg'
-import HomePageShot from '../assets/3_2 screen mockup.svg'
-import UsedCar from '../assets/usedCars.svg'
-import spareParts from '../assets/usedSpareParts.svg'
-import Property from '../assets/corporate-property.svg'
-import community from '../assets/corporate-community.svg'
-import Footer from '../Footer/footer'
+import HomePageShot from '../../assets/3_2 screen mockup.svg'
+import UsedCar from '../../assets/usedCars.svg'
+import spareParts from '../../assets/usedSpareParts.svg'
+import Property from '../../assets/corporate-property.svg'
+import community from '../../assets/corporate-community.svg'
+import Footer from '../../Footer/footer'
 import { AiOutlineStar, AiOutlineControl } from "react-icons/ai";
 import { RiWechatLine } from "react-icons/ri";
 import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 // import { LuSettings2 } from "react-icons/lu";
+
 import './JoinCorporate.css'
 
 const JoinCorporate = () => {
 
+    const navigate = useNavigate()
+
     return (
         <>
-            <div className="join-corporate-header-container">
+             <div className="join-corporate-header-container">
                 <div className="join-corporate-header-inner-container">
                     <img src={Logo} className="'logo" alt="logo" />
                     <div className="corporate-register-login-buttons-container">
-                        <button type='button' className="corporate-register-button">Register</button>
+                        <button type='button' className="corporate-register-button" onClick={()=> navigate('/Join-Corporate/Register')}>Register</button>
                         <button type='button' className="corporate-login-button">Login</button>
                     </div>
                 </div>
@@ -33,7 +37,7 @@ const JoinCorporate = () => {
                             <h3 className="hero-header-main-text">Become a Corporate Seller to<br />simplify your sales ads and listings today!</h3>
                             <p className="hero-header-subtext-para">With Buynzell's corporate services, you can streamline the process of creating<br />and listing your sales ads, saving you time and effort.</p>
                         </div>
-                        <button type='button' className="get-start-button">Get Started</button>
+                        <button type='button' className="get-start-button"  onClick={()=> navigate('/Join-Corporate/Register')}>Get Started</button>
                     </div>
                     <div className="d-section-container"></div>
                     <div className="hero-header-bottom-section-container">
@@ -131,8 +135,8 @@ const JoinCorporate = () => {
                 <hr className="corporate-hr-line" />
                 <div className="corporate-why-us-section">
                     <div className="why-us-heading-container">
-                        <h3>Why Us</h3>
-                        <p>Here’s the three reason to consider us</p>
+                        <h3 className="why-us-heading-text">Why Us</h3>
+                        <p  className="why-us-para-text">Here’s the three reason to consider us</p>
                     </div>
                     <div className="why-us-description-main-outer-container">
                         <div className="why-us-reasons-container">

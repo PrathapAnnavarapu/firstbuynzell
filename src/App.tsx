@@ -24,7 +24,8 @@ import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import ChangePassword from './ChangePassword/changePassword'
 import SavedCardDetails from './Settings/SavedCards/savedCards'
 import SellerDetails from './SellerDetailsComponent/SellerDetails'
-import JoinCorporate from './JoinCorporate/JoinCorporate'
+import JoinCorporate from './JoinCorporate/CorporateHome/JoinCorporate'
+import CorporateRegister from './JoinCorporate/CorporateRegister/CorporateRegister'
 // import PropertyListItemDetails from './PropertyListItemDetails/PropertyItemDetails'
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         <Route path='/Settings/Payments/SavedCards' element={<SavedCardDetails/>}/>
         <Route path='/Seller-Details/:customerId' element={<SellerDetails/>}/>
         <Route path='/Join-Corporate' element={<JoinCorporate/>}/>
+        <Route path='/Join-Corporate/Register' element={<CorporateRegister/>}/>
       </Routes>
     </BrowserRouter>
   );
