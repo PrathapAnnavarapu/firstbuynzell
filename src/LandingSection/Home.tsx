@@ -1,27 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import HeadeSection from '../HeadSection/Header'
-import ProductCard from '../LandingSection/ProductCard'
+import ProductCard from './ProductCard'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
-// import BannerImage from '../assets/bnz2.svg';
 import { BsArrowRight } from "react-icons/bs";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
 import { Carousel } from "react-carousel-minimal";
-// import Carousel from 'react-bootstrap/Carousel';
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css"
+import Footer from '../Footer/footer'
+import NewProductCard from './NewProducatCard'
+
 import './home.css'
-
-
 
 
 const carfilterButtons = [{ name: 'Luxury', id: 1 }, { name: 'Hatchback', id: 2 }, { name: 'Sedan', id: 3 }, { name: 'SUV', id: 4 }, { name: 'MUV', id: 5 }]
 const propertyfilterButtons = [{ name: '2 BHK', id: 1 }, { name: '3 BHK', id: 2 }, { name: 'Pent House', id: 3 }, { name: 'Villa/House', id: 4 }, { name: 'Townhouse', id: 5 }]
 const electronicsfilterButtons = [{ name: 'iPhone', id: 1 }, { name: 'Samsung', id: 2 }, { name: 'Huawei', id: 3 }, { name: 'Vivo', id: 4 }]
+
+
+
 const LandingSection = (props) => {
     const navigate = useNavigate()
     const CarsListObject = {
@@ -4030,10 +4030,14 @@ const PropertyListItemDetails ={
         
 ]}
 
-
-
     const [carsList, setCarsList] = useState<any>(CarsListObject)
     const [activeSearchId, setActiveSearchId] = useState<any>()
+
+    const [posts, setPosts] = useState<any>([])
+    // const photoArray = posts.map((each)=> JSON.parse(each.photos))[0]
+    // // const thumbnailImage = photoArray.map((each) => each.base64)[0]
+    // console.log(photoArray)
+    // console.log(photoArray.map((eachPhoto)=> eachPhoto.base64)))
 
     const onClickFilterButton = (id) => {
         setActiveSearchId(id)
@@ -4186,7 +4190,7 @@ const PropertyListItemDetails ={
         },
         {
             image:'https://peaceelectronics.com.ng/store/wp-content/uploads/2021/11/banner-1.png'
-        }      
+        }   
        
     ]
 
@@ -4198,70 +4202,39 @@ const PropertyListItemDetails ={
         fontSize: "20px",
         fontWeight: "bold"
       };
+
+
+      const getThePostAdDetails = async() =>{
+        const ListsUrl = 'http://localhost:4000/GetPostAdDetails'
+         const options = {
+             method: 'GET',             
+            //  headers: {
+            //     //  "X_API_KEY ": "82aea282-ba7a-42d4-8aae-e387ea74e38b",
+            //      'Accept': 'application/json',
+            //      'Content-Type': 'application/json',
+            //      'Access-Control-Allow-Origin': '*',
+            //      'Access-Control-Allow-Credentials ': true
+            //  },
+         }
+         const response = await fetch(ListsUrl, options)
+        const data = await response.json()
+        if (response.status === 200) {
+            setPosts(data.adsList)
+            
+        }
+        if (response.status === 400) {
+            console.log(data.message)
+        }         
+      }
    
-    const fetchDataFromServer = () =>{
-        const ListsUrl:any = 'https://backend.colourful.work/wp-json/rtcl/v1/listings'
-         const options:any = {             
-             method: 'GET', 
-             mode: "no-cors",
-             credentials: 'include',
-             headers: {                
-                "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept",
-                // "Access-Control-Allow-Headers": "*",
-                'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                'Content-Type': 'application/form-data',
-                "cache-control" : "no-cache"
-              }, 
-              
-           }
-         fetch(ListsUrl,options)
-         .then((res)=> res.json())
-         .then ((data)=>{
-            setCarsList(data)
-            console.log(data) 
+   
 
-         })    
-         
-    }
+     useEffect(() => {
+        getThePostAdDetails()       
 
-     useEffect(()=>{
-        fetchDataFromServer()        
      },[])
 
 
-
-    //  useEffect(() => {
-    //     const fetchProducts = async () => {
-    //       try {
-    //         const response:any = await axios.get(
-    //           "https://backend.colourful.work/wp-json/rtcl/v1/listings",
-    //           {
-    //             headers: {
-    //               "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-    //               "Content-Type": "application/json",
-    //               "Access-Control-Allow-Origin": "*",
-    //               "Access-Control-Allow-Headers":
-    //                 "Origin, X-Requested-With, Content-Type, Accept",
-    //                 "cache-control" : "no-cache"
-    //             },
-                
-    //           }
-    //         );
-    
-          
-    
-    //         setCarsList(response.data);
-    //         console.log(carsList)
-    //       } catch (error) {
-    //         console.error(error);
-    //       }
-    //     };
-    
-    //     fetchProducts();
-    //   }, []);
 
    
 
@@ -4296,7 +4269,7 @@ const PropertyListItemDetails ={
                     margin: "auto"
                     }}
                   />
-                </div>
+                </div>             
                 <div className='cars-outer-main-container'>
                     <div className="cars-container">
                         <h3 className='containerHeading'>Top Search Cars</h3>
@@ -4379,8 +4352,39 @@ const PropertyListItemDetails ={
                         </div>
                     </div>
                 </div>
+                <div className='cars-outer-main-container'>
+                    <div className="cars-container">
+                        <h3 className='containerHeading'>Top Search Cars</h3>
+                        <Stack direction={'row'} sx={{ m: 0 }} className='buttons-container'>
+                            {carfilterButtons.map((each) => (
+                                <button type="button" key={each.id} onClick={() => onClickFilterButton(each.id)} className={each.id === activeSearchId ? 'activeCarFilter' : 'DeactiveCarFilter'}>{each.name}</button>
+                            ))}
+                        </Stack>
+                        {scrollX !== 0 && (
+                            <button type="button" className="productsList-prev-icon-button" onClick={() => slide(-250)} onMouseEnter={(e) => anim(e)} onMouseLeave={(e) => anim2(e)}  ><HiChevronLeft /></button>
+                        )}
+                        <ul className='product-list' ref={scrl} onScroll={scrollCheck}> 
+                            {posts.map((eachProduct) => (
+                                    <NewProductCard newData={eachProduct} key={eachProduct.listing_id} />
+                                ))}                                       
+                        </ul>
+                        {!scrolEnd && (
+                            <button type="button" className="productsList-next-icon-button" onClick={() => slide(+250)} onMouseEnter={(e) => anim(e)} onMouseLeave={(e) => anim2(e)}><HiChevronRight /></button>
+                        )}
+                        <div className='view-more-button'>
+                            <button type="button" className='view-all-button'>View All <BsArrowRight /></button>
+                        </div>
+                    </div>
+                </div>   
+                <div className='landing-footer'>
+                   <Footer/>
+                </div>   
             </div>
         </>
     )
 }
 export default LandingSection
+
+// function asyncuseEffect(arg0: () => void, arg1: never[]) {
+//     throw new Error('Function not implemented.')
+// }

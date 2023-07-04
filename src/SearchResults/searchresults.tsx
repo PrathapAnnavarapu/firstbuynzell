@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {useParams} from 'react-router-dom'
+// import {useParams} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -22,6 +22,7 @@ import { BsChatLeft } from "react-icons/bs";
 // import { GrFavorite } from "react-icons/gr";
 import { MdLocationPin } from "react-icons/md";
 import Stack from '@mui/material/Stack'
+import { useSelector } from 'react-redux';
 import './searchResults.css'
 
 const allProducts = {
@@ -4062,20 +4063,19 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
 
 const  CustomizedDialogs = ()  =>{
     const navigate = useNavigate()
-    const searchInputObject = useParams()
-    
+    const reduxSearchInput = useSelector((state:any) => state.searchInputRedux)
+
     
     const [open, setOpen] = React.useState(false);
     const [allSearchProducts, setAllSearchProducts] = React.useState<any>(allProducts)
 
     
-    console.log(searchInputObject.searchInput)
 
 
 
-    const filterResults = allSearchProducts.data.filter((each) => each.title.toLowerCase().includes(searchInputObject.searchInput.toLowerCase()))
+    const filterResults = allSearchProducts.data.filter((each) => each.title.toLowerCase().includes(reduxSearchInput.toLowerCase()))
     
-    console.log(filterResults)
+   
     
     const handleClickOpen = () => {
         setOpen(true);
@@ -4112,16 +4112,14 @@ const  CustomizedDialogs = ()  =>{
         { label: 'Price High-Low', id: 2 }
     ]
 
-    const handleClick = () =>{
-        navigate('/')
-    }
+    
 
     const breadcrumbs = [
-        <Link  key="1" color="inherit" href='' onClick={handleClick}>
+        <Link  key="1" color="inherit" href='' onClick={()=> navigate('/')}>
             Home
         </Link>,
          <Typography key="2" color="text.primary">
-        {searchInputObject.searchInput}
+        {reduxSearchInput}
        </Typography>
 
     ];
@@ -4165,7 +4163,7 @@ const  CustomizedDialogs = ()  =>{
                 </div>
                 <div id='user-entered-search-results-container'>
                     <div className='search-results-along-with-description'>
-                        <p className='user-search-results-sub-heading'>We found {filterResults.length} Ads for <span className='bold-search'>"{searchInputObject.searchInput}"</span></p>
+                        <p className='user-search-results-sub-heading'>We found {filterResults.length} Ads for <span className='bold-search'>"{reduxSearchInput}"</span></p>
                         <div className='se'>Search</div>
                         <div className='filter-container'>
                             <Autocomplete

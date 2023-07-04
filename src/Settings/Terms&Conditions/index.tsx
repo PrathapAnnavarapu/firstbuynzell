@@ -28,15 +28,14 @@ const Terms = ()=>{
   }
 
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href='' onClick={()=>handleClick(1)}>
+        <Link underline="hover" key="1" color="inherit" onClick={()=>navigate('/')}>
           Home
         </Link>,
         <Link
           underline="hover"
           key="2"
-          color="inherit"  
-          href=''       
-          onClick={()=> handleClick(2)}
+          color="inherit"            
+          onClick={()=> navigate('/Settings')}
         >
           Settings
         </Link>,
@@ -56,7 +55,7 @@ const Terms = ()=>{
                         <Breadcrumbs
                             separator={<NavigateNextIcon fontSize="small" />}
                             aria-label="breadcrumb"
-                           
+                            className='terms-breadcrumbs-pointer'
                         >
                             {breadcrumbs}
                         </Breadcrumbs>

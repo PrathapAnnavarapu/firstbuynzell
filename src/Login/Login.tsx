@@ -14,7 +14,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-
+import Cookies from 'js-cookie'
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './index.css';
 
 
@@ -40,25 +47,26 @@ const theme = createTheme();
 
   const navigate = useNavigate()
 
-
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<any>({
     email: '',
     password: '',
     showSubmitError: false,
     errorMsg: '',
   })
 
+  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   
-  /*const onSubmitSuccess = (data) => {
-    let id =''
-    console.log(id)
-    {data.data.map((eachObject)=>{
-        return id = eachObject.id
-    }
-    )}
-    let to = (props.to || `/preview/${id}`)
-    history.push(to);
-    window.location.reload();
+  const onSubmitSuccess = (data) => {    
+     const loginObject = data.data.map((each)=>each)[0]     
+    Cookies.set('jwt_token', data.jwtToken, {expires:30})    
+   localStorage.setItem('loginDetails', JSON.stringify(loginObject))         
+    navigate('/')
   }
 
   const onSubmitFailure = error => {
@@ -67,42 +75,38 @@ const theme = createTheme();
       showSubmitError: true,
       errorMsg: error,
     })
-  }*/
+  }
 
-  const sendDetailsToServer = () =>{
+   const sendDetailsToServer = async() =>{
     const loginDetails = {
-      username: credentials.email,
+      email: credentials.email,
       password: credentials.password,
-    }
-    const url = 'https://buynzell.colourful.works/wp-json/rtcl/v1/login'
+    } 
+    const url = 'http://localhost:4000/login'
     const options = {
       method: 'POST',
       headers: {        
         'Content-type': 'application/json',         
-        "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
-        "Access-Control-Allow-Origin": 'https://localhost:3000',
+        // "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+        "Access-Control-Allow-Origin": '*',
         "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept,'Accept-Language','Content-Language','text/plain','application/x-www-form-urlencoded','multipart/form-data'",
-        'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-        'Content-Type': 'multipart/form-data',
+        // "Access-Control-Allow-Headers": "Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control,Accept,'Accept-Language','Content-Language','text/plain','application/x-www-form-urlencoded','multipart/form-data'",
+        // 'Access-Control-Allow-Methods': "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        // 'Content-Type': 'multipart/form-data',
         
       },
       body: JSON.stringify(loginDetails),
     }
-    fetch(url, options)
-    .then((res)=> res.json())
-    .then((data)=>{
+    const response = await fetch(url, options)
+    const data = await response.json()
+    
       if (data.status === 200){
-        //onSubmitSuccess(data)
-        navigate('/')
+        onSubmitSuccess(data)
+
       }else{
-        //onSubmitFailure(data.message)
-      }
-      })    
-    .catch((err)=>{
-      console.log(err)
-      //onSubmitFailure(err.message)
-  })
+        onSubmitFailure(data.message)
+      }   
+  
 }
 
 
@@ -150,24 +154,39 @@ const theme = createTheme();
                 })
         }
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={credentials.password}
-                onChange={e =>
-                setCredentials({
-                    ...credentials,
-                    password: e.target.value,
-                })
-        }
+            <FormControl sx={{ mt: 1, width: '44ch' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ?  'text': 'password' }
+            value={credentials.password}
+            onChange={e =>
+            setCredentials({
+                ...credentials,
+                password: e.target.value,
+            })           
+    }      
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ?  <Visibility />: <VisibilityOff /> }
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>      
+            
+           
+           
+             
+            {credentials.showSubmitError && <p style={{color:'red'}}>{credentials.errorMsg}</p>}
 
-            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -182,14 +201,14 @@ const theme = createTheme();
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <button type='button' onClick={()=> navigate('/ChangePassword')} className='forget-password-button'>
                   Forgot password?
-                </Link>
+                </button>
               </Grid>
               <Grid item>
-                <Link href="/SignUp" variant="body2">
+                <button type="button" className="signUp-button" onClick={()=> navigate('/SignUp')}>
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </button>
               </Grid>
             </Grid>
           </Box>

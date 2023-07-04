@@ -1,9 +1,12 @@
-/* .signin-container{
-padding: 24px;
-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-Width:550px;
-Height:558px;
-border-style: solid;
-border-width: 1px;
-border-radius:12px;
-} */
+.signUp-button{
+    background-color: transparent;
+    border-style: none;
+    color: #0068B3;
+}
+
+.forget-password-button{
+    background-color: transparent;
+    border-style: none;
+    color: #0068B3;
+
+}

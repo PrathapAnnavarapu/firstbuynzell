@@ -4,16 +4,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px 0px 80px;
+    padding: 0px 0px 40px;
     gap: 32px;
     position: absolute;
     width: 100vw;
-    height: 100%;
+    /* height: 100%; */
     left: 0px;
     top: 136px;
     overflow-y: scroll;
     padding-bottom: 180px;
+    background-color: #F4F5F7;
+    background-size: cover;
+    height: 100vh;
+  
+}
 
+.banner-image-preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 16px;
+    width: 100%;
+    height: 240px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
 }
 
 .banner-image-container {
@@ -29,6 +45,7 @@
     flex-grow: 0;
     background: linear-gradient(to left, rgba(216, 85, 107, 0.2), rgba(145, 101, 216, 0.2));
 }
+
 
 .banner-image-logo {
     display: flex;
@@ -156,7 +173,7 @@
     width: 80px;
     height: 80px;
 
-    background: #FFD37A;
+    background-color: #FFD37A;
     border-radius: 100px;
 
 
@@ -166,6 +183,17 @@
     z-index: 0;
 
 }
+
+.profile-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: none;
+}
+
 
 .replace-banner-heading {
     width: 452px;
@@ -200,7 +228,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    padding: 0px;    
     gap: 24px;
     width: 302px;
     height: 217px;
@@ -217,6 +245,7 @@
     height: 32px;
     left: 358.5px;
     top: 365px;
+    color: #0068B3;
 }
 
 .name {
@@ -226,10 +255,9 @@
     align-items: center;
     padding: 0px;
     gap: 4px;
-
+    margin-bottom: 0px;
     width: 302px;
-    height: 64px;
-    margin-bottom: 24px;
+    height: 64px;    
     margin-top: 16px;
     /* Inside auto layout */
 
@@ -321,6 +349,10 @@
     order: 1;
     align-self: stretch;
     flex-grow: 0;
+}
+
+#add-photo{
+    display: none;
 }
 
 .nav-buttons-container1 {
@@ -845,7 +877,7 @@
 
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -1079,4 +1111,9 @@
     align-self: stretch;
     flex-grow: 0;
     margin: 0px;
+}
+
+.profile-footer{
+ top: 2003px;
+ order: 2;
 }

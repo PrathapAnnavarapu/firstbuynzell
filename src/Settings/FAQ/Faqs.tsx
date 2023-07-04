@@ -23,26 +23,17 @@ const Faq = () => {
     const navigate = useNavigate()
     const [activeFaq, SetActiveFaq] = useState<any>()
 
-    const handleClick = (key)=>{
-        if (key === 1){
-            navigate('/')
-        }
-        else if(key === 2){
-            navigate('/Settings')
-        }
-
-    }
+   
 
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href="" onClick={()=>handleClick(1)}>
+        <Link underline="hover" key="1" color="text.primary"  onClick={()=>navigate('/')}>
             Home
         </Link>,
         <Link
             underline="hover"
             key="2"
-            color="inherit"
-            href=""
-            onClick={()=>handleClick(2)}
+            color="text.primary"           
+            onClick={()=>navigate('/Settings')}
         >
             Settings
         </Link>,
@@ -61,6 +52,7 @@ const Faq = () => {
                         <Breadcrumbs
                             separator={<NavigateNextIcon fontSize="small" />}
                             aria-label="breadcrumb"
+                            className='faq-breadcrubs-pointer'
                         >
                             {breadcrumbs}
                         </Breadcrumbs>

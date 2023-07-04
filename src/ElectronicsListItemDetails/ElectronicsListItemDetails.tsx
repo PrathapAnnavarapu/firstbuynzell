@@ -2042,21 +2042,21 @@ const ElectronicsListItemDetails = (props) => {
     const dispatch = useDispatch()
     const Faviourites: any = useSelector((state) => state)
 
-    const isItemIsAvailableInFav = Faviourites.some((each) => each.listing_id === ElectronicsListItemDetails.data.map((eachItem) => eachItem.listing_id))
+    // const isItemIsAvailableInFav = Faviourites.some((each) => each.listing_id === ElectronicsListItemDetails.data.map((eachItem) => eachItem.listing_id))
 
 
 
 
-    const onClickSaveOrRemoveToFaviourate = (eachData) => {
-        if (isItemIsAvailableInFav) {
-            dispatch({ type: 'RemoveFav', payload: eachData.listing_id })
-        } else {
-            dispatch({
-                type: 'AddToList',
-                payload: eachData
-            })
-        }
-    }
+    // const onClickSaveOrRemoveToFaviourate = (eachData) => {
+    //     if (isItemIsAvailableInFav) {
+    //         dispatch({ type: 'RemoveFav', payload: eachData.listing_id })
+    //     } else {
+    //         dispatch({
+    //             type: 'AddToList',
+    //             payload: eachData
+    //         })
+    //     }
+    // }
 
     const OnClickEachItem = (eachData) => {
 
@@ -2243,10 +2243,10 @@ const ElectronicsListItemDetails = (props) => {
                             {ElectronicsListItemDetails.data.map((each) => (
                                 <li className='product-card'>
                                     <div style={{ backgroundImage: `url(${each.images.map((eachObject) => eachObject.src)[0]})`, backgroundSize: 'cover', backgroundPosition: 'center', width: 233.6, height: 136, margin: 0, borderRadius: 4 }} key={each.listing_id} >
-                                        {isItemIsAvailableInFav ?
+                                        {/* {isItemIsAvailableInFav ?
                                             (< button type="button" key={each.listing_id} onClick={() => onClickSaveOrRemoveToFaviourate(each)} className='activeLove' ><MdFavorite /></button>
                                             ) : (< button type="button" key={each.listing_id} onClick={() => onClickSaveOrRemoveToFaviourate(each)} className='deactiveLove' ><GrFavorite /></button>)
-                                        }
+                                        } */}
                                     </div>
                                     <div key={each.listing_id} onClick={() => OnClickEachItem(each)}>
                                         <div className='detaisl-container'>

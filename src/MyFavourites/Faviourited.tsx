@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import Button from '@mui/material/Button'
-import Stack from '@mui/material/Stack'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HeadSection from '../HeadSection/Header'
@@ -20,7 +18,7 @@ const myFavCategories = [{ name: 'Ads', id: 1 }, { name: 'Seller', id: 2 }]
 function Faviourites(props) {
     const [activeFavId, setActiveFavId] = useState<any>()
     const dispatch = useDispatch()
-    const faviorites: any = useSelector((state => state))
+    const faviorites: any = useSelector((state:any) => state.FavList)
     const Sellers: any = []
 
     const breadcrumbs = [

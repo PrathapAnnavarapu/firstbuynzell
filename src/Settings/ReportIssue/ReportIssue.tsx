@@ -14,26 +14,17 @@ import './reportissue.css'
 
 const ReportIssue = () => {
   const navigate = useNavigate()
-
-  const handleClick = (key) =>{
-    if (key === 1){
-      navigate('/')
-    }
-    else if (key === 2){
-      navigate('/Settings')
-    }
-  }
+ 
 
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="" onClick={()=>handleClick(1)}>
+    <Link underline="hover" key="1" color="inherit" onClick={()=>navigate('/')}>
       Home
     </Link>,
     <Link
       underline="hover"
       key="2"
-      color="inherit"
-      href=""
-      onClick={()=>handleClick(2)}
+      color="inherit"    
+      onClick={()=>navigate('/Settings')}
     >
       Settings
     </Link>,
@@ -52,6 +43,7 @@ const ReportIssue = () => {
             <Breadcrumbs
               separator={<NavigateNextIcon fontSize="small" />}
               aria-label="breadcrumb"
+              className='Report-breadcrumbs-pointer'
             >
               {breadcrumbs}
             </Breadcrumbs>

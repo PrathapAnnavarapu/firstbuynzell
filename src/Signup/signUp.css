@@ -4,3 +4,18 @@
     font-family: inter;
 
 }
+.alredy-have-account-button{
+    background-color: transparent;
+    border-style: none;
+    color: #0068B3;
+}
+
+.check-mark-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.correct-check-mark{
+    width:60px;
+    height:60px
+}

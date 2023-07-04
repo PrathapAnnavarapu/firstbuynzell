@@ -4,12 +4,14 @@
     align-items: center;
     padding: 24px 80px 80px;
     gap: 24px;
-
     position: absolute;
     width: 1440px;
     height: 853px;
     left: 0px;
     top: 136px;
+    background-color: #F4F5F7;
+    background-size: cover;
+    height: 100vh;
 
 }
 

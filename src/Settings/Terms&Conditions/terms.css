@@ -50,6 +50,10 @@
     flex-grow: 0;
 }
 
+.terms-breadcrumbs-pointer{
+    cursor: pointer;
+}
+
 .back-to-settings {
     display: flex;
     flex-direction: column;

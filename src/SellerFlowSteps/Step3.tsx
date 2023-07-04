@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 // import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack'
@@ -7,21 +8,21 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid from '@mui/material/Grid';
 import StarIcon from '@mui/icons-material/StarBorder';
 // import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import Button from '@mui/material/Button'
-import { IoMdClose } from "react-icons/io"
+import { IoMdClose, IoMdPhotos } from "react-icons/io"
+import { useDispatch, useSelector } from 'react-redux';
 
 import './step3.css'
+import StepFour from './Step4';
 
 
 
@@ -67,62 +68,89 @@ const Input = styled(MuiInput)`
 `;
 
 const discountCouponsList = [{ code: 'Firstsell', price: 123 }, { code: 'Secondsell', price: 83 }, { code: 'Buynzell100', price: 100 }]
-interface discount { code: string, price: number }
+// interface discount { code: string, price: number }
+
+
 function StepThree() {
-  const [adValue, setAdValue] = React.useState<any>(30);
-  const [isCheckedFeaturedCategory, setIsCheckedFeaturedCategory] = React.useState<boolean>(false)
-  const [isCheckedFeaturedSeResult, setIsCheckedFeaturedSeResult] = React.useState<boolean>(false)
+  const dispatch = useDispatch()
+
+  
+  const adDetails:null|any = useSelector((state:null |any)=> state.postAdDetails[0])
+  const contactDetails:any = useSelector((state:null |any)=> state.postAdDetails[1])
+
+  const previewOfPhoto = useSelector((state:any)=> state.previewPhotos)
+
+  const jsonLoginDetails = localStorage.getItem('loginDetails')
+  const parseLoginDetails: any = JSON.parse(String(jsonLoginDetails))
+ 
+ 
+
   const [isActiveSiverPlan, setIsActiveSiverPlan] = React.useState<boolean>(false)
   const [isActiveGoldPlan, setIsActiveGoldPlan] = React.useState<boolean>(false)
   const [isActiveDiamondPlan, setIsActiveDiamondPlan] = React.useState<boolean>(false)
   const [couponCodeInput, setCouponCodeInput] = React.useState<string>('')
-  const [activeDiscountObject, setActiveDiscountObject] = React.useState<discount>()
   const [errorMsg, setErrorMsg] = React.useState<string>('')
-  const [activePlan, setActivePlan] = React.useState<string>('')
+  const [activeCouponDetils, setActiveCouponDetils] = React.useState<any>([])
+ 
 
-  const subTotalPricesArray: any = [(adValue * 50)]
-  isCheckedFeaturedCategory && subTotalPricesArray.push(100)
-  isCheckedFeaturedSeResult && subTotalPricesArray.push(200)
+
+  const [planDetails, setPlanDetails] = React.useState<any>({
+    planValidityDays: '',
+    isSelectFeatureInCategory: false,
+    isSelectFeatureInSearchResults: false,
+    activeMemberShipPackage: '',
+    discountCouponDetails: '',
+    totalAmount: '',
+    adCurrentStatus:'Under review'
+  })
+
+
+
+  const subTotalPricesArray: any = [(planDetails.planValidityDays * 50)]
+  planDetails.isSelectFeatureInCategory && subTotalPricesArray.push(100)
+  planDetails.isSelectFeatureInSearchResults && subTotalPricesArray.push(200)
   isActiveSiverPlan && subTotalPricesArray.push(100)
   isActiveGoldPlan && subTotalPricesArray.push(250)
   isActiveDiamondPlan && subTotalPricesArray.push(500)
   const subTotalAmount = subTotalPricesArray.reduce((accu, curr) => accu + curr)
-  const vatAmount = Math.ceil((subTotalAmount * 5) / 100)
-  const totalAmountArray = [subTotalAmount, vatAmount]
-  const totalPrice = totalAmountArray.reduce((acc, cur) => acc + cur)
-  const GrandTotalPrice = activeDiscountObject !== undefined ? totalPrice - activeDiscountObject.price : totalPrice
+  const vatAmount: any = Math.ceil((subTotalAmount * 5) / 100)
+  const totalAmountArray: any = [subTotalAmount, vatAmount]
+  const totalPrice: any = totalAmountArray.reduce((acc, cur) => acc + cur)
+  const GrandTotalPrice: null | number = activeCouponDetils.length >=1 ? totalPrice - activeCouponDetils.map((each)=> each.price)[0] : totalPrice
 
+  useEffect(() => {
+    setPlanDetails({ ...planDetails, totalAmount: GrandTotalPrice })
+  }, [GrandTotalPrice])
 
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
-    setAdValue(newValue);
+    setPlanDetails({ ...planDetails, planValidityDays: newValue });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAdValue(event.target.value === '' ? '' : Number(event.target.value));
+    setPlanDetails({ ...planDetails, planValidityDays: event.target.value === '' ? '' : Number(event.target.value) });
   };
 
   const handleBlur = () => {
-    if (adValue < 0) {
-      setAdValue(0);
-    } else if (adValue > 100) {
-      setAdValue(100);
+    if (planDetails.planValidityDays < 1) {
+      setPlanDetails({ ...planDetails, planValidityDays: 1 });
+    } else if (planDetails.planValidityDays > 100) {
+      setPlanDetails({ ...planDetails, planValidityDays: 100 });
     }
   };
 
   const changeHandleFeatureCategory = () => {
-    setIsCheckedFeaturedCategory((prev) => !prev)
+    setPlanDetails({ ...planDetails, isSelectFeatureInCategory: !planDetails.isSelectFeatureInCategory })
   }
 
   const changeHandleFeatureSearchResult = () => {
-    setIsCheckedFeaturedSeResult((prev) => !prev)
+    setPlanDetails({ ...planDetails, isSelectFeatureInSearchResults: !planDetails.isSelectFeatureInSearchResults })
   }
 
   const handleSelectPlan = (plan) => {
-    setActivePlan(plan)
+    setPlanDetails({ ...planDetails, activeMemberShipPackage: plan })
     if (plan === 'Silver') {
       setIsActiveSiverPlan(true)
-      subTotalPricesArray.push(100)
     }
     else {
       setIsActiveSiverPlan(false)
@@ -146,9 +174,11 @@ function StepThree() {
     if (couponCodeInput === '') {
       setErrorMsg('Please Enter a Valid Coupon code')
     } else {
-      const isCouponValid = discountCouponsList.find((eachCoupon) => eachCoupon.code === couponCodeInput)
-      if (isCouponValid !== undefined) {
-        setActiveDiscountObject(isCouponValid)
+      const isCouponValid = discountCouponsList.filter((eachCoupon) => eachCoupon.code === couponCodeInput)
+      if (isCouponValid.length > 0) {
+
+        setPlanDetails({ ...planDetails, discountCouponDetails: JSON.stringify(isCouponValid) })
+        setActiveCouponDetils(isCouponValid)
         setCouponCodeInput('')
         setErrorMsg('')
       } else {
@@ -159,7 +189,33 @@ function StepThree() {
   }
 
   const onClickRemoveDiscount = () => {
-    setActiveDiscountObject(undefined)
+    setActiveCouponDetils([])
+
+  }
+
+  const sendPlanDetailsToReduxStore = async() => {
+    dispatch({ type: 'addPlanDetails', payload: planDetails })
+    dispatch({ type: 'IncActivePageCount', payload: 3 })
+    const stepUrl = `http://localhost:4000/updateTheActivePageCount/${parseLoginDetails.customer_id}`
+        const options={
+            method:'PUT',
+           headers:{
+                'Content-type': 'application/json',
+            // "x-api-key": "497a9dba-2e9f-4895-9357-9175a40bcb9e",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+
+            },
+            body:JSON.stringify({customerId:parseLoginDetails.customer_id, 	activePageStep:3})
+        }
+        const response = await fetch(stepUrl, options)
+        const data = await response.json()
+        if (response.status === 200){
+            console.log(data.message)
+        }
+   
+    // localStorage.setItem(`${parseLoginDetails.user_name}ActivePage`, '3')
+
   }
 
   return (
@@ -172,16 +228,17 @@ function StepThree() {
           </div>
           <div className='ads-plan-selection-info-container'>
             <div className='no-of-days-selection-plan-container'>
+
               <Stack direction={'row'}>
                 <Grid item>
                   <Input
-                    value={adValue}
+                    value={planDetails.planValidityDays}
                     size="small"
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     inputProps={{
                       step: 10,
-                      min: 0,
+                      min: 1,
                       max: 100,
                       type: 'number',
                       'aria-labelledby': 'input-slider',
@@ -189,7 +246,7 @@ function StepThree() {
                   />
                 </Grid>
                 <Typography id="input-slider" gutterBottom>
-                  {adValue <= 1 ? 'Day' : 'Days'}(<span style={{ color: 'blue', fontWeight: 500 }}>{adValue * 50}</span> AED)
+                  {planDetails.planValidityDays === 1 ? 'Day' : 'Days'}(<span style={{ color: 'blue', fontWeight: 500 }}>{planDetails.planValidityDays * 50}</span> AED)
                 </Typography>
               </Stack>
             </div>
@@ -197,7 +254,7 @@ function StepThree() {
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs>
                   <Slider
-                    value={typeof adValue === 'number' ? adValue : 0}
+                    value={typeof planDetails.planValidityDays === 'number' ? planDetails.planValidityDays : 0}
                     onChange={handleSliderChange}
                     aria-labelledby="input-slider"
                   />
@@ -207,21 +264,15 @@ function StepThree() {
             <div className='ads-feature-category-plan-container'>
               <div className='featured-category-plan-selection-checkbox-container'>
                 <Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 550, m: 0, p: 0 }}>
-                  <FormControlLabel required control={<Checkbox />} label='Feature In Category' onChange={changeHandleFeatureCategory} />
+                  <FormControlLabel required control={<Checkbox />} label='Feature In Category For 2.5 Days' onChange={changeHandleFeatureCategory} sx={{ width: 200 }} />
                   <h5 >AED 100</h5>
                 </Stack>
-                <Stack>
-                  <p style={{ margin: 0 }}>For 2.5 Days</p>
-                </Stack>
               </div>
-              <hr className='content-saparate-line'/>
+              <hr className='content-saparate-line' />
               <div className='featured-category-plan-search-result-checkbox-container'>
                 <Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 550, m: 0 }}>
-                  <FormControlLabel required control={<Checkbox />} label='Feature In Search Result' onChange={changeHandleFeatureSearchResult} />
+                  <FormControlLabel required control={<Checkbox />} label='Feature In Search Result For 2.5 Days' onChange={changeHandleFeatureSearchResult} sx={{ width: 200 }} />
                   <h5 >AED 200</h5>
-                </Stack>
-                <Stack>
-                  <p style={{ margin: 0 }}>For 2.5 Days</p>
                 </Stack>
               </div>
             </div>
@@ -236,25 +287,17 @@ function StepThree() {
                 // Enterprise card is full width at sm breakpoint
                 <Grid
                   item
-                // key={tier.title}
-                // xs={12}
-                // sm={tier.title === 'Enterprise' ? 12 : 6}
-                // md={4}                      
                 >
                   <Card className='ads-package-card-container'>
                     <CardHeader
                       // title={tier.title}
                       // subheader={tier.subheader}
                       titleTypographyProps={{ align: 'center' }}
-                      action={tier.title === 'Pro' ? <StarIcon /> : <FormControlLabel required control={<Checkbox />} label={tier.title} key={tier.title} onChange={() => handleSelectPlan(tier.title)} checked={tier.title === activePlan} className='checkbox-input' />}
+                      action={tier.title === 'Pro' ? <StarIcon /> : <FormControlLabel required control={<Checkbox />} label={tier.title} key={tier.title} onChange={() => handleSelectPlan(tier.title)} checked={tier.title === planDetails.activeMemberShipPackage} className='checkbox-input' />}
                       subheaderTypographyProps={{
                         align: 'center',
                       }}
                       sx={{
-                        // backgroundColor: (theme) =>
-                        //   theme.palette.mode === 'light'
-                        //     ? theme.palette.grey[200]
-                        //     : theme.palette.grey[700],
                         width: 173,
                         height: 30,
                         p: 0
@@ -272,9 +315,6 @@ function StepThree() {
                         <Typography component="h2" variant="h6" color="text.primary" className='plan-price-text'>
                           AED {tier.price}
                         </Typography>
-                        {/* <Typography variant="h6" color="text.secondary">
-                        /mo
-                      </Typography> */}
                       </Box>
                       <ul className='package-features-info-container'>
                         {tier.description.map((line) => (
@@ -306,7 +346,18 @@ function StepThree() {
             <div className='ads-payment-summary-heading-container'>
               <h4 className='ads-payment-summary-heading'>Summary</h4>
             </div>
-            <div className='ad-preview-container'>ad-preview</div>
+            <div className='ad-preview-container'>    
+              <img src={previewOfPhoto[0]} alt='photo' className='preview-image'/>
+              <div className='previw-description'>
+                <div className='ad_preview_title_container'>
+                  <h5 className='preview-title'>{adDetails.title}</h5>
+                  {planDetails.isSelectFeatureInCategory && <div className='feature-card'>FEATURE</div>}
+                </div>
+                <h6 className='preview-price'>AED {adDetails.price}</h6>
+                <h6 className='preview-address'>{contactDetails.city} . {contactDetails.region} . {contactDetails.country}</h6>
+              </div>
+            </div>
+
             <div className='ads-payment-discount-input-container'>
               <h4 className='ads-payment-discount-heading'>Discount </h4>
               <Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 452 }}>
@@ -320,8 +371,8 @@ function StepThree() {
                 <h4 className='ads-price-details-sub-heading'>Price Details</h4>
               </div>
               <div className='days-amount-plan-container'>
-                <p className='day-ad-amount-title'>{adValue} Day Ad</p>
-                <p className='day-ad-amount-price'>AED {adValue * 50}</p>
+                <p className='day-ad-amount-title'>{planDetails.planValidityDays} Day Ad</p>
+                <p className='day-ad-amount-price'>AED {planDetails.planValidityDays * 50}</p>
               </div>
               {isActiveSiverPlan && (
                 <div className='silver-amount-plan-container'>
@@ -338,12 +389,12 @@ function StepThree() {
                   <p className='day-ad-amount-title'>Premium Diamond</p>
                   <p className='day-ad-amount-price'>AED 500</p>
                 </div>)}
-              {isCheckedFeaturedCategory && (
+              {planDetails.isSelectFeatureInCategory && (
                 <div className='feature-category-amount-plan-container'>
                   <p className='feature-category-ad-amount-title'>2.5 Day Feature</p>
                   <p className='feature-category-ad-amount-price'>AED 100</p>
                 </div>)}
-              {isCheckedFeaturedSeResult && (
+              {planDetails.isSelectFeatureInSearchResults && (
                 <div className='featured-results-amount-plan-container'>
                   <p className='featured-results-ad-amount-title'>Feature In Search Result</p>
                   <p className='featured-results-ad-amount-price'>AED 200</p>
@@ -352,25 +403,30 @@ function StepThree() {
                 <p className='vat-amount-title'>Vat 5%</p>
                 <p className='vat-amount-price'>AED {vatAmount}</p>
               </div>
-              {activeDiscountObject !== undefined &&
+              {activeCouponDetils.length !== 0 &&
                 (<div className='discount-amount-plan-container'>
-                  <p className='day-ad-amount-title'>Discount <span style={{ color: 'blue' }}>{activeDiscountObject.code}</span><Button type="button" onClick={onClickRemoveDiscount} sx={{ p: 0 }}><IoMdClose /></Button></p>
-                  <p className='day-ad-amount-price'>AED {activeDiscountObject.price}</p>
+                  <p className='day-ad-amount-title'>Discount <span style={{ color: 'blue' }}>{activeCouponDetils.map((each) => each.code)}</span><Button type="button" onClick={onClickRemoveDiscount} sx={{ p: 0 }}><IoMdClose /></Button></p>
+                  <p className='day-ad-amount-price'>AED {activeCouponDetils.map((each) => each.price)}</p>
                 </div>)
               }
             </div>
             <div className='total-amount-container'>
               <div className='total-amount-inner-container'>
                 <h3 className='day-ad-total-amount-text'>Total</h3>
-                <h3 className='day-ad-total-amount-price'>AED {GrandTotalPrice}</h3>
+                <h3 className='day-ad-total-amount-price'>AED {planDetails.totalAmount}</h3>
+              </div>
+              <div className='confirm-check-box'>
+              <FormControlLabel required control={<Checkbox />} label="I accepted all terms& Conditions" name='terms&conditions'  />
+              </div>
+              <div className='step-three-buttons-container'>
+              <button type="button" className='step-three-back-button' onClick={()=> dispatch({type:'decreaseThePageCount', payload:1})}>Back</button>
+              <button type="button" className='step-three-pay-button' onClick={sendPlanDetailsToReduxStore}>Pay</button>
               </div>
             </div>
-            {/* <Button type="button" variant='contained'>Total Pay</Button> */}
           </div>
         </div>
       </div>
     </div>
-
   )
 }
 export default StepThree

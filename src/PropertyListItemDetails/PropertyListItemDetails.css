@@ -11,6 +11,9 @@
   left: 0px;
   top: 136px;
   overflow-y: scroll;
+  background-color: #F4F5F7;
+    background-size: cover;
+    height: 100vh;
 
 }
 

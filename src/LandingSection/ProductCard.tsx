@@ -11,17 +11,17 @@ import './ProductCard.css'
 
 const ProductCard = (props) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const Faviourites: any = useSelector((state) => state)
-    console.log(Faviourites)
-
+    const dispatch = useDispatch()   
     const { eachData } = props
     const { promotions } = eachData
+    const FaviouritesList:any = useSelector((state:any) => state.FavList)
+   
 
-
-    const isItemIsAvailableInFav = Faviourites.some((each) => each.listing_id === eachData.listing_id)
-    const isFeaturedItem = promotions.some((each) => each === 'featured')
-    console.log(isFeaturedItem)
+   
+    const isItemIsAvailableInFav:any = FaviouritesList.some((each) => each.listing_id === eachData.listing_id)
+    
+    const isFeaturedItem:any = promotions.some((each) => each === 'featured')
+ 
 
 
 
@@ -39,19 +39,18 @@ const ProductCard = (props) => {
 
     const OnClickEachItem = (eachData) =>{
        
-        console.log(eachData.categories.map((each)=> each.name))
-        if (eachData.categories.map((each)=> each.name === 'Cars')[0]){
+        if (eachData.category === 'Motors'){
             window.scrollTo(0, 0)
             navigate('/MotorsListItemDetails/:id')
         }
-        else if(eachData.categories.map((each)=> each.name === 'Electronicd')[0]){
-            window.scrollTo(0, 0)
-            navigate('/ElectronicsListItemDetails')
-        }
-        else if (eachData.categories.map((each)=> each.name === 'Property')[0]){
-            window.scrollTo(0, 0)
-            navigate('/PropertyListItemDetails')
-        }
+        // else if(eachData.categories.map((each)=> each.name === 'Electronicd')[0]){
+        //     window.scrollTo(0, 0)
+        //     navigate('/ElectronicsListItemDetails')
+        // }
+        // else if (eachData.categories.map((each)=> each.name === 'Property')[0]){
+        //     window.scrollTo(0, 0)
+        //     navigate('/PropertyListItemDetails')
+        // }
 
     }
 

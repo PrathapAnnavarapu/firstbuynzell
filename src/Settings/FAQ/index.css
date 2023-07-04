@@ -80,6 +80,10 @@
     flex-grow: 0;
 }
 
+.faq-breadcrubs-pointer{
+    cursor: pointer;
+}
+
 .faq-to-settings {
     display: flex;
     flex-direction: column;

@@ -22,6 +22,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { GrFavorite } from "react-icons/gr";
 import { MdFavorite, MdLocationPin } from "react-icons/md";
+import {useParams} from 'react-router-dom'
+import Footer from '../Footer/footer'
 import ImageCarousel from './carousel'
 
 import "./listItem.css";
@@ -32,7 +34,12 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 }
 
 const similarfilterButtons = [{ name: 'Luxury', id: 1 }, { name: 'Hatchback', id: 2 }, { name: 'Sedan', id: 3 }, { name: 'SUV', id: 4 }, { name: 'MUV', id: 5 }]
+
 const ListItemDetails = (props) => {
+
+    const {postAdId} = useParams()
+   
+    
     const initialListItemDetails = {
         "listing_id": 4821,
         "author_id": 1,
@@ -3434,55 +3441,120 @@ const ListItemDetails = (props) => {
     }
 
 
-    const [listItemsDetails, setListItemDetails] = useState<any>(initialListItemDetails)
+    const [listItemsDetails, setListItemDetails] = useState<any>([])
+   
 
-    // const dateFormat = differenceInDays(new Date(initialListItemDetails.created_at))
-    // console.log(dateFormat)
+    // const photosArray:any = listItemsDetails.map((each)=> each.photos.split(','))
+
+    const photosArray: any[] = listItemsDetails.map((each) => {
+        const photos = each.photos.split(',');
+        return photos.map((url, index) => ({url:`http://localhost:4000/${url}`, id:index+1}));
+      });
+
+      const insurenceValidityDate = listItemsDetails.map((each)=> each.insurence_validity_upto)[0]
+    
+
+     const date = new Date(insurenceValidityDate)
+
+       var month = date.getMonth(); 
+        var day = date.getDate();
+        var year = date.getFullYear();
+
+        let monthName = ''
+        if (month === 0) {
+            monthName = 'Jan'
+        } else if (month === 1) {
+            monthName = 'Feb'
+        }
+        else if (month === 2) {
+            monthName = 'Mar'
+        }
+        else if (month === 3) {
+            monthName = 'Apr'
+        }
+        else if (month === 4) {
+            monthName = 'May'
+        }
+        else if (month === 5) {
+            monthName = 'Jun'
+        }
+        else if (month === 6) {
+            monthName = 'July'
+        }
+        else if (month === 7) {
+            monthName = 'Aug'
+        }
+        else if (month === 8) {
+            monthName = 'Sep'
+        }
+        else if (month === 9) {
+            monthName = 'Oct'
+        }
+        else if (month === 10) {
+            monthName = 'Nov'
+        } else if (month === 11) {
+            monthName = 'Dec'
+        }
+     
+ 
+    
+   
+
+  
+
 
     const currentDate = new Date()
-    const userDate = new Date(listItemsDetails.created_at)
+    const userDate = new Date(listItemsDetails.map((each)=> each.ad_posted_date))
 
     const daysOld = differenceInDays(currentDate, userDate)
+    let monthsOld:any = null
+    if (daysOld === 0){
+        monthsOld = 'Today'
+    }
+    else if (daysOld < 30){
+        monthsOld = `${Number((daysOld).toFixed(0))} Days ago`
+    }
+    else{
+        monthsOld = `${Number((daysOld / 30.5).toFixed(0))} Months ago`
+    }     
+   
 
-    const monthsOld = Number((daysOld / 30.5).toFixed(0))
-    console.log(monthsOld)
 
+    // const data = [
+    //     {
+    //         url:
+    //             "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    //         id: 1
+    //     },
+    //     {
+    //         url:
+    //             "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    //         id: 2,
+    //     },
+    //     {
+    //         url:
+    //             "https://images.unsplash.com/photo-1617132217587-19a419c6a985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZCUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    //         id: 3,
+    //     },
+    //     {
+    //         url: 'https://images.unsplash.com/photo-1563721938524-4da1bede2935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60',
+    //         id: 4
+    //     }
 
-    const data = [
-        {
-            url:
-                "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-            id: 1
-        },
-        {
-            url:
-                "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-            id: 2,
-        },
-        {
-            url:
-                "https://images.unsplash.com/photo-1617132217587-19a419c6a985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9yZCUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-            id: 3,
-        },
-        {
-            url: 'https://images.unsplash.com/photo-1563721938524-4da1bede2935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60',
-            id: 4
-        }
-
-    ]
+    // ]
 
 
 
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
+        <Link underline="hover" key="1" color="inherit" onClick={()=>navigate('/')}>
             Home
         </Link>,
         <Link
             underline="hover"
             key="2"
             color="inherit"
-            href="/material-ui/getting-started/installation/"
-            onClick={handleClick}
+           
+            onClick={()=>navigate('/')}
         >
             Motors
         </Link>,
@@ -3493,7 +3565,7 @@ const ListItemDetails = (props) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const Faviourites: any = useSelector((state) => state)
+    const Faviourites: any = useSelector((state:any) => state.FavList)
 
     const isItemIsAvailableInFav = Faviourites.some((each) => each.listing_id === CarsListObject.data.map((eachItem) => eachItem.listing_id))
 
@@ -3529,27 +3601,28 @@ const ListItemDetails = (props) => {
 
     }
 
-    //   useEffect(()=>{
-    //     const {match} = props
-    //     const {params} = match
-    //     const {id} = params   
-    //     const ListsUrl = `https://backend.colourful.work/wp-json/rtcl/v1/listings/${id}`
-    //     const options = { 
-    //         method: 'GET',          
-    //         headers: {
-    //           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',           
-    //           'Content-type': 'application/json',
-    //           //Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODA1MDE1OTcsImV4cCI6MTY4MDU4Nzk5N30.ECp-yIUGci1ii_XGwNotRih88wl5sWv7gT8ebARXX50',
-    //           'x-api-key' :'82aea282-ba7a-42d4-8aae-e387ea74e38b'
-    //         }, 
-    //       }
-    //     fetch(ListsUrl,options)
-    //     .then((res => res.json()))
-    //     .then((data) =>{
-    //         console.log(data)
-    //         //setListItemDetails(data)
-    //     })
-    // })
+
+    const getPostAdDetails = async() =>{
+        const ListsUrl = `http://localhost:4000/GetPostAdListItemDetails/${postAdId}`
+        const options = { 
+            method: 'GET'   
+            
+          }
+
+          const response = await fetch(ListsUrl, options)
+        const data = await response.json()
+       
+        if (response.status === 200) {           
+            setListItemDetails(data.adListItemsDetails)            
+        }
+        if (response.status === 400) {
+            console.log(data.message)
+        }      
+    }
+
+      useEffect(()=>{         
+       getPostAdDetails()
+    },[])
 
 
 
@@ -3558,6 +3631,7 @@ const ListItemDetails = (props) => {
         <>
             <HeadSection />
             <div className="car-item-details-main-container">
+            {listItemsDetails.map((each)=> (
                 <div className="car-item-details-inner-container">
                     <div className="car-item-details-bread-crumbs">
                         <Breadcrumbs
@@ -3570,10 +3644,10 @@ const ListItemDetails = (props) => {
                     <div className="ads-car-item-overall-container">
                         <div className="main-car-item-container">
                             <div className="car-item-title-container">
-                                <h2 className="item-title">{listItemsDetails.title}</h2>
+                                <h2 className="item-title">{each.title}</h2>
                             </div>
                             <div className='carousel-image-container'>
-                                <ImageCarousel images={data} />
+                                <ImageCarousel images={photosArray[0]} />
                             </div>
                             <div className="car-heighlights-container">
                                 <div className="heighlights-heading-container">
@@ -3616,7 +3690,7 @@ const ListItemDetails = (props) => {
                                         <div className="fuel-avatar-container">
                                             <GiGasPump className="user-icon" />
                                         </div>
-                                        <h4 className="users-type-heading">Gas Oil</h4>
+                                        <h4 className="users-type-heading">{each.fuel_type}</h4>
                                     </div>
                                 </div>
                                 <div className="detail-2">
@@ -3630,7 +3704,7 @@ const ListItemDetails = (props) => {
                                         <div className="seating-avatar-container">
                                             <MdOutlineEventSeat className="user-icon" />
                                         </div>
-                                        <h4 className="users-type-heading">6 Seats</h4>
+                                        <h4 className="users-type-heading">{each.no_of_seats} Seats</h4>
                                     </div>
                                     <div className="specs-details-container">
                                         <div className="specs-avatar-container">
@@ -3647,29 +3721,29 @@ const ListItemDetails = (props) => {
                                 <div className="specifications">
                                     <div className="car-specifications-container1">
                                         <p className="specification-category-heading">Make</p>
-                                        <h4 className="specification-category-value">Range Rover</h4>
+                                        <h4 className="specification-category-value">{each.brand}</h4>
                                     </div>
                                     <div className="car-specifications-container2">
                                         <p className="specification-category-heading">Model</p>
-                                        <h4 className="specification-category-value">Sport HSE</h4>
+                                        <h4 className="specification-category-value">{each.model}</h4>
                                     </div>
                                     <div className="car-specifications-container3">
                                         <p className="specification-category-heading">Year</p>
-                                        <h4 className="specification-category-value">2022</h4>
+                                        <h4 className="specification-category-value">{each.year_of_registration}</h4>
                                     </div>
                                 </div>
                                 <div className="specifications1">
                                     <div className="car-specifications-container1">
                                         <p className="specification-category-heading">Exterior Color</p>
-                                        <h4 className="specification-category-value">Black</h4>
+                                        <h4 className="specification-category-value">{each.exterior_color}</h4>
                                     </div>
                                     <div className="car-specifications-container2">
                                         <p className="specification-category-heading">Interier Color</p>
-                                        <h4 className="specification-category-value">Beige</h4>
+                                        <h4 className="specification-category-value">{each.interior_color}</h4>
                                     </div>
                                     <div className="car-specifications-container3">
                                         <p className="specification-category-heading">Doors</p>
-                                        <h4 className="specification-category-value">4 doors</h4>
+                                        <h4 className="specification-category-value">{each.no_od_doors}</h4>
                                     </div>
                                 </div>
                                 <div className="specifications2">
@@ -3683,30 +3757,30 @@ const ListItemDetails = (props) => {
                                     </div>
                                     <div className="car-specifications-container3">
                                         <p className="specification-category-heading">No of Cylinders</p>
-                                        <h4 className="specification-category-value">4 </h4>
+                                        <h4 className="specification-category-value">{each.no_of_cylinders} </h4>
                                     </div>
                                 </div>
                                 <div className="specifications3">
                                     <div className="car-specifications-container1">
                                         <p className="specification-category-heading">Horse Power</p>
-                                        <h4 className="specification-category-value">300-400 HP</h4>
+                                        <h4 className="specification-category-value">{each.horse_power} HP</h4>
                                     </div>
                                     <div className="car-specifications-container2">
                                         <p className="specification-category-heading">Steering Side</p>
-                                        <h4 className="specification-category-value">Left</h4>
+                                        <h4 className="specification-category-value">{each.steering_option}</h4>
                                     </div>
                                     <div className="car-specifications-container3">
                                         <p className="specification-category-heading">Insurence validity till</p>
-                                        <h4 className="specification-category-value">4 April 2024</h4>
+                                        <h4 className="specification-category-value">{day} {monthName} {year}</h4>
                                     </div>
                                 </div>
                             </div>
                             <div className="ad-item-descrition-container">
                                 <h4>Description</h4>
                             </div>
-                            <p className="ads-item-paragraph">Well maintained - Company service only - Upgraded Interiors</p>
+                            <p className="ads-item-paragraph">{each.description}</p>
                             <div className="ads-item-price">
-                                <p className="ads-item-price-text">AED 12345</p>
+                                <p className="ads-item-price-text">AED {each.price}</p>
                             </div>
                             <div className="is-an-issue-report-ad-container">
                                 <p className="issue-report-text">Is there an issue? Report Ad</p>
@@ -3715,30 +3789,29 @@ const ListItemDetails = (props) => {
                         <div className="narrow-cotainer">
                             <div className="top-section">
                                 <div className="top-section-price-text-container">
-                                    <p className="top-section-price-text"> AED {listItemsDetails.price}</p>
-                                    <p className="top-section-posted-sub-text" > Posted {monthsOld} Months ago</p>
+                                    <p className="top-section-price-text"> AED {each.price}</p>
+                                    <p className="top-section-posted-sub-text" > Posted {monthsOld}</p>
                                 </div>
                                 <div className="top-section-ads-posted-user-info-container">
-                                    <div className="top-section-ads-posted-user-info-inner-container">
+                                    <div className="top-section-ads-posted-user-info-inner-container" onClick={()=>navigate(`/Seller-Details/${each.customer_id}`)}>
                                         <div className="user-photo-avatar-container">
-                                            {/* <img className="avatar" src='' alt="call" /> */}
+                                            <img className="avatar" src={`http://localhost:4000/${each.profile_image_url}`} alt="pic" />
                                         </div>
-                                        <p className="user-name">Rasheed</p>
+                                        <p className="profile-user-name">{each.name}</p>
                                     </div>
                                 </div>
                                 <div className="ads-person-contact-information-details-buttons">
                                     <button type='button' className="chat-with-seller-button"><BsChatLeft />Chat with seller</button>
-                                    <button type='button' className="contact-with-seller-button"><BsTelephone />8300061759</button>
+                                    <button type='button' className="contact-with-seller-button"><BsTelephone />{each.phone_number}</button>
                                 </div>
                                 <div className="ads-posted-person-adress-info-container">
                                     <p className="ads-posted-person-adress-info-heading">Posted in</p>
-                                    <p className="ads-posted-person-adress-info-location-name">Zayadcity Dubai</p>
+                                    <p className="ads-posted-person-adress-info-location-name">{each.city}, {each.region}, {each.country}</p>
                                 </div>
                                 <div className="motors-adress-location-on-map">
                                     <div id="embedded-map-display" >
-                                        <iframe
-                                            style={{ width: 372, height: 200 }}
-                                            src="https://www.google.com/maps/embed/v1/place?q=Zayadcity Dubai&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
+                                        <iframe                                           
+                                            src={`https://www.google.com/maps/embed/v1/place?q=${each.lati}, ${each.long}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`}  className='map-sizes'>
 
                                         </iframe>
                                     </div>
@@ -3750,9 +3823,10 @@ const ListItemDetails = (props) => {
                         </div>
                     </div>           
                 </div>
+                 ))}
                 <div className="similar-item-details-container">
                         <div className="similar-item-details-heading-container">
-                            <h3 className="similar-item-details-heading">Similar Items</h3>
+                            <h3 className="similar-item-details-heading">Related Items</h3>
                         </div>
                         <div className="filter-input-fields-buttons">
                             {similarfilterButtons.map((each) => (
@@ -3786,7 +3860,9 @@ const ListItemDetails = (props) => {
                             ))}
                         </ul>
                     </div>
+                    <Footer/>              
                 </div>
+          
         </>
     );
 };

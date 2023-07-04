@@ -10,6 +10,7 @@ import StepOne from '../SellerFlowSteps/Step1'
 import StepTwo from '../SellerFlowSteps/Step2'
 import StepThree from '../SellerFlowSteps/Step3'
 import StepFour from '../SellerFlowSteps/Step4'
+import { relative } from 'path';
 
 const steps = ['Enter Ad Details', 'Enter Your Details', 'Select Your Paln', 'Payment'];
 
@@ -35,6 +36,7 @@ export default function SellerFlowSteps() {
         }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
+       
     };
 
     const handleBack = () => {
@@ -87,7 +89,7 @@ export default function SellerFlowSteps() {
             <Stack direction={'column'}>
                 {activeStep === 0 && (
                     <>
-                        <StepOne />
+                        <StepOne />                        
                         <Stack direction={'row'} justifyContent={'center'} sx={{ pl: 5, m: 1, position: 'absolute', top: 2000, left:470 }}>
                             {activeStep === steps.length ? (
                                 <React.Fragment>
@@ -102,7 +104,7 @@ export default function SellerFlowSteps() {
                             ) : (
                                 <React.Fragment>
                                     {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent:'center', alignItems:'end', pt: 2 }}>
                                         <Button
                                             color="inherit"
                                             disabled={activeStep === 0}
@@ -125,6 +127,7 @@ export default function SellerFlowSteps() {
                                 </React.Fragment>
                             )}
                         </Stack>
+                        
                     </>)}
 
                 {activeStep === 1 && (<>
@@ -261,6 +264,8 @@ export default function SellerFlowSteps() {
 }
 
 
+
+// sx={{ pl: 5, m: 1, position: 'absolute', top: 2000, left:470 }}
 
 
 

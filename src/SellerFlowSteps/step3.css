@@ -18,8 +18,8 @@
   align-items: center;
   padding: 0px 32px;
   gap: 24px;
-  width: 95vw;
-  height: 98vh; 
+  width: 100%;
+  height: 100%; 
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -32,7 +32,7 @@
   padding: 32px 24px 0px;
   gap: 24px;
   width: 600px;
-  height: 1479px;
+  height: 1569px;
   background: #FFFFFF;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 8px;
@@ -336,10 +336,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  padding-bottom: 0px;
   gap: 16px;
   width: 552px;
-  height: 119px;
+  height: 138px;
   border-top: 1px dashed #EAECF0;
   flex: none;
   order: 1;
@@ -650,7 +650,7 @@
   padding: 0px 0px;
   gap: 8px;
   width: 552px;
-  height: 122px;
+  height: 162px;
   background: #FFFFFF;
   border-top: 1px dashed #D0D5DD;
   border-radius: 0px 0px 8px 8px;
@@ -712,7 +712,7 @@ flex-direction: row;
 align-items: flex-start;
 padding: 16px;
 gap: 16px;
-width: 452px;
+width: 552px;
 height: 104px;
 background: #FFFFFF;
 border: 1px solid #EAECF0;
@@ -721,5 +721,244 @@ margin: 0px;
 flex: none;
 order: 1;
 align-self: stretch;
+flex-grow: 0;
+}
+
+.step-three-pay-button{
+  
+padding: 8px 16px;
+gap: 8px;
+
+width: 218px;
+height: 37px;
+
+/* Neutral/Grey/900 */
+
+background: #101828;
+border-radius: 4px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 150%;
+/* identical to box height, or 21px */
+
+
+/* Neutral/Grey/25 */
+
+color: #FCFCFD;
+
+/* Inside auto layout */
+
+
+}
+
+.preview-image{
+  box-sizing: border-box;
+
+width: 100px;
+height: 72px;
+
+
+/* Neutral/Grey/50 */
+
+border: 1px solid #F9FAFB;
+border-radius: 4px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.previw-description{
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+width: 404px;
+height: 72px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 1;
+}
+
+.ad_preview_title_container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  margin-bottom: 0px;
+
+  width: 404px;
+  height: 24px;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.preview-title{
+  width: 222px;
+  height: 24px;
+  
+  /* Body/Body 1 Medium */
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+  
+  
+  /* Neutral/Grey/900 */
+  
+  color: #101828;
+  
+  
+  /* Inside auto layout */
+  
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.feature-card{
+  display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 2px 8px;
+gap: 10px;
+
+width: 78px;
+height: 22px;
+
+/* Secondary/Yellow 75 */
+
+background: #FFD37A;
+border-radius: 40px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+
+
+/* Neutral/Grey/900 */
+
+color: #101828;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+.preview-price{
+  width: 304px;
+height: 18px;
+
+/* Footnote/Heavy */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+margin-bottom: 0px;
+
+
+/* Neutral/Grey/600 */
+
+color: #475467;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+}
+.preview-address{
+  display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+margin-bottom: 0px;
+width: 304px;
+height: 18px;
+/* Footnote/medium */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+
+
+/* Neutral/Grey/500 */
+
+color: #667085;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.step-three-buttons-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:552px;
+  
+}
+
+.step-three-back-button{
+  
+  width:168px;
+height: 37px;
+padding: 8px 16px;
+
+gap: 8px;
+flex: 1 0 0;
+border-radius: 4px;
+border: 1px solid var(--neutral-grey-300, #D0D5DD);
+color: black;
+}
+.elipse{
+  width: 4px;
+height: 4px;
+
+/* Neutral/Grey/300 */
+
+background: #D0D5DD;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
 flex-grow: 0;
 }

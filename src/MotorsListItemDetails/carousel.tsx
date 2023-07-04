@@ -9,6 +9,8 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState<ImageType>();
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
+  console.log(images)
+
   useEffect(() => {
     if (images && images[0]) {
       carouselItemsRef.current = carouselItemsRef.current.slice(

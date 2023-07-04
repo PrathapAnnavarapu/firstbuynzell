@@ -20,21 +20,26 @@ import CurrentSubscriptionDetails from './CurrentSubscriptionDetails/currentSubs
 import Notifications from './Notifications/notifications'
 import ElectronicsListItemDetails from './ElectronicsListItemDetails/ElectronicsListItemDetails'
 import PropertyListItemDetails from './PropertyListItemDetails/PropertyListItemDetails'
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
+import ChangePassword from './ChangePassword/changePassword'
+import SavedCardDetails from './Settings/SavedCards/savedCards'
+import SellerDetails from './SellerDetailsComponent/SellerDetails'
+import JoinCorporate from './JoinCorporate/JoinCorporate'
 // import PropertyListItemDetails from './PropertyListItemDetails/PropertyItemDetails'
 function App() {
   return (
     <BrowserRouter>
-      <Routes >
-        <Route path='/' element={<Home />} />
-        <Route path='/SignUp' element={<Signup />} />
+      <Routes >                    
+        <Route  path='/' element={<Home />} />        
         <Route path='/Login' element={<Login />} />
+        <Route path='/SignUp' element={<Signup />} />        
         {/* <Route exact path="./SignupWays" component={SignupinDffMethods}/> */}
-        <Route path='/MotorsListItemDetails/:id' element={<CarListItemDetails />} />
+        <Route path='/MotorsListItemDetails/:postAdId' element={<CarListItemDetails />} />
         <Route path='/ElectronicsListItemDetails' element={<ElectronicsListItemDetails />} />
         <Route path='/PropertyListItemDetails' element={<PropertyListItemDetails />} />
-        <Route path='/SearchResults/:searchInput' element={<SearchResults/>}/>
+        <Route path='/SearchResults' element={<SearchResults/>}/>
         <Route path="/Settings" element={<Settings />} />
-        <Route path="/MotorsListItemDetails" element={<SearchResults />} />        
+        {/* <Route path="/MotorsListItemDetails" element={<SearchResults />} />         */}
         <Route path="/Settings/Myprofile" element={<MyProfile />} />
         <Route path="/Settings/Terms&Conditions" element={<Terms />} />
         <Route path="/Packages/Upgrade" element={<SubscriptionDetails />} />
@@ -43,7 +48,11 @@ function App() {
         <Route path='/MyFaviorites' element={<MyFav/>}/>
         <Route path='/Settings/Faqs' element={<FAQ/>}/>
         <Route path='/Settings/ReportIssue' element={<ReportIssue/>}/>
-        <Route path="/Settings/Notifications" element={<Notifications/>}/>
+        <Route path="/Settings/Notifications" element={<Notifications/>}/>  
+        <Route path="/ChangePassword" element={<ChangePassword/>}/>       
+        <Route path='/Settings/Payments/SavedCards' element={<SavedCardDetails/>}/>
+        <Route path='/Seller-Details/:customerId' element={<SellerDetails/>}/>
+        <Route path='/Join-Corporate' element={<JoinCorporate/>}/>
       </Routes>
     </BrowserRouter>
   );

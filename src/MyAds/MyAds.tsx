@@ -24,6 +24,8 @@ import { BiEdit } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineClockCircle, AiOutlineInfoCircle } from "react-icons/ai";
 import { CgTrash } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
+import {useEffect} from 'react'
+import Footer from '../Footer/footer'
 import './Myads.css'
 
 
@@ -84,15 +86,68 @@ function MyAds() {
     const [activeFilterId, setActiveFilterId] = React.useState(0)
     const [soldOptions, setSoldOptions] = React.useState(options)
     const [soldStatus, setSoldStatus] = React.useState(false)
+    const [activePostId, setsetActivePostId] = React.useState<any|null>()
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [myAdsList, setMyAdsList] = React.useState<null|any>([])
     const [open, setOpen] = React.useState(false);
-   
-     const handleClick = () =>{
-        navigate('/')
-     }
+     
+
+    
+    //  const handleClick = () =>{
+    //     navigate('/')
+    //  }
+
+     const jsonLoginDetails = localStorage.getItem('loginDetails')
+    const parseLoginDetails: any = JSON.parse(String(jsonLoginDetails))
+
+  const adPostedDate = myAdsList.map((each)=> each.ad_posted_date)[0]
+    const date = new Date(adPostedDate)
+
+       var month = date.getMonth(); 
+        var day = date.getDate();
+        var year = date.getFullYear();
+
+        let monthName = ''
+        if (month === 0) {
+            monthName = 'Jan'
+        } else if (month === 1) {
+            monthName = 'Feb'
+        }
+        else if (month === 2) {
+            monthName = 'Mar'
+        }
+        else if (month === 3) {
+            monthName = 'Apr'
+        }
+        else if (month === 4) {
+            monthName = 'May'
+        }
+        else if (month === 5) {
+            monthName = 'Jun'
+        }
+        else if (month === 6) {
+            monthName = 'July'
+        }
+        else if (month === 7) {
+            monthName = 'Aug'
+        }
+        else if (month === 8) {
+            monthName = 'Sep'
+        }
+        else if (month === 9) {
+            monthName = 'Oct'
+        }
+        else if (month === 10) {
+            monthName = 'Nov'
+        } else if (month === 11) {
+            monthName = 'Dec'
+        }
+     
+
+    
      
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
+        <Link underline="hover" key="1" color="inherit" style={{cursor:'pointer'}} onClick={()=> navigate('/')}>            
             Home
         </Link>,
          <Typography key="3" color="text.primary">
@@ -104,6 +159,7 @@ function MyAds() {
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
+        
     }
 
     const handleCloseUserMenu = () => {
@@ -111,7 +167,7 @@ function MyAds() {
     };
 
 
-    console.log(open)
+ 
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -123,22 +179,98 @@ function MyAds() {
 
 
 
-    const onClickOnSold = (id) => {
-        if (id === 3) {
+   
+
+    const onClickSelectOptions = (id) =>{
+        
+        if (id == 3){
             const indexOfSoldItem = soldOptions.findIndex((each) => each.id === id)
             setSoldStatus((prev) => !prev)
             const newSoldOptions = [...soldOptions]
             newSoldOptions[indexOfSoldItem] = { ...newSoldOptions[indexOfSoldItem], name: soldStatus ? 'Sold' : 'Unsold' }
             setSoldOptions(newSoldOptions)
         }
+        if (id === 4){
+            handleClickOpen()
+
+        }
     }
-
-
 
 
     const onClickFilterButton = (id) => {
         setActiveFilterId(id)
     }
+
+
+    const getMyPostAdDetails = async() =>{
+        const ListsUrl = `http://localhost:4000/GetMyPostAdDetails/${parseLoginDetails.customer_id}`
+        const options = { 
+            method: 'GET'   
+            
+          }
+
+          const response = await fetch(ListsUrl, options)
+        const data = await response.json()
+       
+        if (response.status === 200) {
+           
+            setMyAdsList(data.adListItemsDetails)
+            
+        }
+        if (response.status === 400) {
+            console.log(data.message)
+        }      
+    }
+
+      useEffect(()=>{         
+       getMyPostAdDetails()
+    },[])
+
+
+    const getContainerClassName = status =>{
+        if (status === 'Under review'){
+            return 'my-ad-under-progress-container'
+        }
+        else if(status === 'Live'){
+            return 'my-ad-live-container'
+        }
+        else if(status === 'Rejected'){
+            return 'my-Ad-rejected-container'
+        }
+        else if(status === 'Expired'){
+            return 'my-ad-expired-container'
+        }
+    }
+
+    const getHeadingClassName = (status) =>{
+        if (status === 'Under review'){
+        return 'my-ad-under-review-heading'
+        }else if (status === 'Live'){
+            return 'my-ad-live-heading'            
+        }else if (status === 'Rejected'){
+            return 'my-ad-reject-heading'            
+        }
+        else if (status === 'Expired'){
+            return 'my-ad-expiry-heading'            
+        }
+    }
+
+    const onClickToDeleteAd = async()=>{
+        setMyAdsList(myAdsList.filter((each)=> each.post_ad_id !== activePostId))      
+   
+        const url = `http://localhost:4000/Delete-postAdDetails/${activePostId}`
+        const options ={
+            method:'DELETE'            
+        }
+        debugger
+        const response  = await fetch (url, options)
+        const data = await response.json()
+         if (response.status === 200){
+            console.log(data)
+         }
+
+    }
+
 
     return (
         <>
@@ -149,7 +281,7 @@ function MyAds() {
                         <Breadcrumbs
                             separator={<NavigateNextIcon fontSize="small" />}
                             aria-label="breadcrumb"
-                            className='breadcrumbs'            >
+                            className='breadcrumbs'>
                             {breadcrumbs}
                         </Breadcrumbs>
                         <div className='my-ads-container'>
@@ -157,7 +289,7 @@ function MyAds() {
                             <div className='myads-filter-buttons'>
                                 <div className='buttons'>
                                     {myAdsfilterButtons.map((each) => (
-                                        <button type="button" key={each.id} onClick={() => onClickFilterButton(each.id)} className={each.id === activeFilterId ? 'activeMyFavButtons' : 'DeactiveMyFavButtons'}>{each.name}</button>
+                                        <button type="button" key={each.id} onClick={() => onClickFilterButton(each.id)} className={each.id === activeFilterId ? 'activeMyFavButtons' : 'DeactiveMyFavButtons'}>{each.name} ({myAdsList.length})</button>
                                     ))}
                                 </div>
                                 <Stack>
@@ -166,103 +298,23 @@ function MyAds() {
                             </div>
                             <div className='my-ads-list-container'>
                                 <div className='my-ads-section-container'>
-                                    <h3 className='motors-heading-container'>Motors</h3>
+                                    <h3 className='motors-heading-container'>Motors</h3>                                    
+                                    {myAdsList.map((each)=>(
                                     <div className='motors-ads-container'>
-                                        <p className='ads-date'>27 Jan 2023</p>
+                                        <p className='ads-date'>{day} {monthName} {year}</p>
                                         <div className='ads-container'>
                                             <div className='ads-frame'>
                                                 {soldStatus && <h6 className='sold'>Sold</h6>}
-                                                <img src='https://media.istockphoto.com/id/170110046/photo/photorealistic-illustration-of-blue-car.jpg?s=612x612&w=0&k=20&c=-hoFPF15-T07bUBJn6ccsSwGw96ZObf5JEdS4Y8Co1M=' alt="img" className='my-add-image' />
+                                                <img src={`http://localhost:4000/${[each.photos.split(',')].map((each)=> each[0])}`} alt="img" className='my-add-image' />
 
                                                 <div className='my-ad-description' >
                                                     <div className='staus-container'>
                                                         <div>
-                                                            <div className='my-ad-under-progress-container'><span className='my-ad-under-review-heading'>Under review</span></div>
-                                                        </div>
-                                                        <Box sx={{ flexGrow: 0 }}  >
-                                                            <Tooltip title="Open settings">
-                                                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                                                    <BsThreeDotsVertical />
-                                                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                                                                </IconButton>
-                                                            </Tooltip>
-                                                            <Menu
-                                                                sx={{ mt: '45px' }}
-                                                                id="menu-appbar"
-                                                                anchorEl={anchorElUser}
-                                                                anchorOrigin={{
-                                                                    vertical: 'top',
-                                                                    horizontal: 'right',
-                                                                }}
-                                                                keepMounted
-                                                                transformOrigin={{
-                                                                    vertical: 'top',
-                                                                    horizontal: 'right',
-                                                                }}
-                                                                open={Boolean(anchorElUser)}
-                                                                onClose={handleCloseUserMenu}
-                                                               
-                                                            >
-                                                                {soldOptions.map((setting) => (
-                                                                    <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                                                                        <button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95, color:'black' }}>{setting.logo}{setting.name}</Stack></button>
-                                                                        <BootstrapDialog
-                                                                            onClose={handleClose}
-                                                                            aria-labelledby="customized-dialog-title"
-                                                                            open={open}
-                                                                            // className='delete-ad-dialog-container'
-
-                                                                        >
-                                                                            <div className='delete-ad-icon-container'>
-                                                                            < CgTrash className='delete-ad-icon' />
-                                                                            </div>
-                                                                            <div className='delete-conformation-container'>
-                                                                                <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-                                                                                    Delete Ad
-                                                                                </BootstrapDialogTitle>
-                                                                                <Typography gutterBottom sx={{ p: 2 }}>
-                                                                                    Are you sure you want to delete this Ad? <br />This action cannot be undone.
-                                                                                </Typography>
-                                                                            </div>
-                                                                            <div className='delte-ad-buttons-contaier'>
-                                                                                <Stack direction={'row'} justifyContent={'space-between'}>
-                                                                                    <Button type='button' variant='outlined' sx={{ color: 'black' }} onClick={handleClose}> Cancel
-                                                                                    </Button>
-                                                                                    <Button type='button' variant='contained' sx={{ backgroundColor: 'red', color: 'white' }}> Delete
-                                                                                    </Button>
-                                                                                </Stack>
-                                                                            </div>
-                                                                            <DialogActions>
-                                                                            </DialogActions>
-                                                                        </BootstrapDialog>
-                                                                    </MenuItem>
-                                                                ))}
-                                                            </Menu>
-                                                        </Box>
-                                                    </div>
-                                                    <div className='description-details-container'>
-                                                        <h6 className='vechile-name'>BMW 3 SERIES</h6>
-                                                        <p className='vechile-price'>AED 91,900</p>
-                                                    </div>
-                                                </div >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='motors-ads-container'>
-                                        <p className='ads-date'>23 Dec 2022</p>
-                                        <div className='ads-container'>
-                                            <div className='ads-frame'>
-                                                {soldStatus && <h6 className='sold'>Sold</h6>}
-                                                <img src='https://imgd.aeplcdn.com/0x0/n/cw/ec/106785/exterior-right-front-three-quarter-2.jpeg?isig=0' alt="img" className='my-add-image' />
-
-                                                <div className='my-ad-description' >
-                                                    <div className='staus-container'>
-                                                        <div>
-                                                            <div className='my-ad-live-container'><span className='my-ad-live-heading'>Live</span></div>
+                                                            <div className={getContainerClassName(each.ad_current_status)}><span className={getHeadingClassName(each.ad_current_status)}>{each.ad_current_status}</span></div>
                                                         </div>
                                                         <Box sx={{ flexGrow: 0 }}>
                                                             <Tooltip title="Open settings">
-                                                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                                                <IconButton onClick={(e)=> {handleOpenUserMenu(e); setsetActivePostId(each.post_ad_id)}} sx={{ p: 0 }}>
                                                                     <BsThreeDotsVertical />
                                                                     {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
                                                                 </IconButton>
@@ -283,9 +335,9 @@ function MyAds() {
                                                                 open={Boolean(anchorElUser)}
                                                                 onClose={handleCloseUserMenu}
                                                             >
-                                                                {soldOptions.map((setting) => (
-                                                                    <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                                                                        <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button>
+                                                                {soldOptions.map((setting) => (                                                                   
+                                                                    <MenuItem key={setting.id} onClick={handleCloseUserMenu}>                                                                        
+                                                                        <button type='button' className='myAd-nav-options' onClick={() => onClickSelectOptions(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></button>
                                                                         <BootstrapDialog
                                                                             onClose={handleClose}
                                                                             aria-labelledby="customized-dialog-title"
@@ -303,7 +355,7 @@ function MyAds() {
                                                                                 <Stack direction={'row'} justifyContent={'space-between'}>
                                                                                     <Button type='button' variant='outlined' sx={{ color: 'black' }} onClick={handleClose}> Cancel
                                                                                     </Button>
-                                                                                    <Button type='button' variant='contained' sx={{ backgroundColor: 'red', color: 'white' }}> Delete
+                                                                                    <Button type='button' variant='contained' sx={{ backgroundColor: 'red', color: 'white' }} onClick={onClickToDeleteAd}> Delete
                                                                                     </Button>
                                                                                 </Stack>
                                                                             </DialogContent>
@@ -316,10 +368,10 @@ function MyAds() {
                                                         </Box>
                                                     </div>
                                                     <div className='description-details-container'>
-                                                        <h6 className='vechile-name'>BMW 3 SERIES</h6>
+                                                        <h6 className='vechile-name'>{each.brand}</h6>
                                                         <div className='details-ad'>
-                                                            <p className='vechile-price'>AED 91,900</p>
-                                                            <p className='location'>Location</p>
+                                                            <p className='vechile-price'>AED {each.price}</p>
+                                                            <p className='my-ad-location'>{each.city}, {each.region}</p>
                                                         </div>
                                                     </div>
                                                 </div >
@@ -330,7 +382,8 @@ function MyAds() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='motors-ads-container'>
+                                ))}
+                                    {/* <div className='motors-ads-container'>
                                         <p className='ads-date'>17 Dec 2022</p>
                                         <div className='ads-container'>
                                             <div className='ads-frame'>
@@ -346,7 +399,7 @@ function MyAds() {
                                                             <Tooltip title="Open settings">
                                                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                                                     <BsThreeDotsVertical />
-                                                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                                                                    // <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> 
                                                                 </IconButton>
                                                             </Tooltip>
                                                             <Menu
@@ -367,7 +420,7 @@ function MyAds() {
                                                             >
                                                                 {soldOptions.map((setting) => (
                                                                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                                                                        <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button>
+                                                                        // <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button> 
                                                                         <BootstrapDialog
                                                                             onClose={handleClose}
                                                                             aria-labelledby="customized-dialog-title"
@@ -426,7 +479,7 @@ function MyAds() {
                                                             <Tooltip title="Open settings">
                                                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                                                     <BsThreeDotsVertical />
-                                                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                                                                    //  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> 
                                                                 </IconButton>
                                                             </Tooltip>
                                                             <Menu
@@ -447,7 +500,7 @@ function MyAds() {
                                                             >
                                                                 {soldOptions.map((setting) => (
                                                                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                                                                        <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button>
+                                                                        //  <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button> 
                                                                         <BootstrapDialog
                                                                             onClose={handleClose}
                                                                             aria-labelledby="customized-dialog-title"
@@ -501,7 +554,7 @@ function MyAds() {
                                                             <Tooltip title="Open settings">
                                                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                                                     <BsThreeDotsVertical />
-                                                                    {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                                                                    //  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> 
                                                                 </IconButton>
                                                             </Tooltip>
                                                             <Menu
@@ -522,7 +575,7 @@ function MyAds() {
                                                             >
                                                                 {soldOptions.map((setting) => (
                                                                     <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-                                                                        <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button>
+                                                                        //  <Button type='button' onClick={() => setting.id === 4 ? handleClickOpen() : onClickOnSold(setting.id)}><Stack direction={'row'} justifyContent={'space-between'} sx={{ width: 95 }}>{setting.logo}{setting.name}</Stack></Button> 
                                                                         <BootstrapDialog
                                                                             onClose={handleClose}
                                                                             aria-labelledby="customized-dialog-title"
@@ -559,13 +612,15 @@ function MyAds() {
                                                 </div >
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>                   
+                </div>                
+                <Footer/>               
             </div>
+           
         </>
     )
 }
